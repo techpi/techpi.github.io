@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Techpi.cn]]></title>
+  <subtitle><![CDATA[技术派]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2015-09-15T02:35:25.416Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name><![CDATA[Techpi.cn]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[好玩的Android版本代号]]></title>
+    <link href="http://yoursite.com/2015/09/15/Android-version/"/>
+    <id>http://yoursite.com/2015/09/15/Android-version/</id>
+    <published>2015-09-15T02:35:25.416Z</published>
+    <updated>2015-09-15T02:35:25.416Z</updated>
+    <content type="html"><![CDATA[<hr>
+<ul>
+<li>Android 1.5        Cupcake                纸杯蛋糕</li>
+<li>Android 1.6         Donut                 甜甜圈</li>
+<li>Android 2.0/2.1     Eclair                 闪电泡芙</li>
+<li>Android 2.2         Froyo                冻酸奶</li>
+<li>Android 2.3        GingerBread            姜人饼</li>
+<li>Android 3.0        Honeycomb            蜂巢</li>
+<li>Android 4.0        Ice Cream Sandwich    冰淇淋三明治</li>
+<li>Android 5.0/5.1    Lollipop            棒棒糖</li>
+<li>Android 6.0        Marshmallow            棉花糖</li>
+</ul>
+<p>猜猜下个版本会叫什么名字……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<ul>
+<li>Android 1.5        Cupcake                纸杯蛋糕</li>
+<li>Android 1.6         Donut                 甜甜圈</li>
+<li>Android 2.0/2.1]]>
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="代码" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Markdown语法学习笔记]]></title>
+    <link href="http://yoursite.com/2015/09/14/Markdown-Grammar/"/>
+    <id>http://yoursite.com/2015/09/14/Markdown-Grammar/</id>
+    <published>2015-09-14T05:20:27.730Z</published>
+    <updated>2015-09-14T05:20:27.730Z</updated>
+    <content type="html"><![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
+<hr>
+<h2 id="1、文本的样式">1、文本的样式</h2><hr>
+<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><strong>效果</strong>： <strong>粗体文本</strong></p>
+<hr>
+<h3 id="1-2、斜体">1.2、斜体</h3><p><strong>语法</strong>： *需要设置成斜体的文字*<br><strong>效果</strong>： <em>斜体文字</em></p>
+<hr>
+<h3 id="1-3、_删除线">1.3、 删除线</h3><p><strong>语法</strong>： ~ ~文字~ ~ （<strong>注意：中间无空格</strong>）<br><strong>效果</strong>： <del>文字</del></p>
+<hr>
+<h3 id="1-4、_超链接">1.4、 超链接</h3><p><strong>效果</strong>： <a href="http://202.110.203.12" target="_blank" rel="external">超链接标题</a></p>
+<hr>
+<h3 id="1-5、_图片">1.5、 图片</h3><p><strong>效果</strong>： <img src="/img/barcode.png" alt="图片替代文本" title="图片标题"></p>
+<hr>
+<h3 id="1-6、代码">1.6、代码</h3><p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">    System.out.println(<span class="string">"Hello, World!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>inline 代码</strong><br><code>System.out.println(&quot;Hello, World&quot;);</code></p>
+<hr>
+<h3 id="1-7、_列表">1.7、 列表</h3><p><strong>效果</strong>： </p>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<p><strong>注意！-前面一定要有个空格！</strong></p>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<p><strong>有序列表</strong></p>
+<ol>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ol>
+<hr>
+<h3 id="1-8_引用">1.8 引用</h3><p><strong>效果</strong>： </p>
+<blockquote>
+<p>装B也是一种品质</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
+<hr>
+<h2 id="1、文本的样式">1、文本的样式</h2><hr>
+<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><str]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[从github上找到一个超级喜欢的主题]]></title>
+    <link href="http://yoursite.com/2015/09/11/theme/"/>
+    <id>http://yoursite.com/2015/09/11/theme/</id>
+    <published>2015-09-11T08:54:24.842Z</published>
+    <updated>2015-09-11T08:54:24.842Z</updated>
+    <content type="html"><![CDATA[<p>从github上找到一个超级喜欢的主题，赶紧clone到本地试试效果，感觉真的很清爽，不错，就用这个了。</p>
+<p>感谢作者<strong>litten</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>从github上找到一个超级喜欢的主题，赶紧clone到本地试试效果，感觉真的很清爽，不错，就用这个了。</p>
+<p>感谢作者<strong>litten</strong></p>
+]]>
+    </summary>
+    
+      <category term="github" scheme="http://yoursite.com/tags/github/"/>
+    
+      <category term="theme" scheme="http://yoursite.com/tags/theme/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在Github上搭建自己的个人Blog]]></title>
+    <link href="http://yoursite.com/2015/09/11/build-my-blog/"/>
+    <id>http://yoursite.com/2015/09/11/build-my-blog/</id>
+    <published>2015-09-11T07:42:19.209Z</published>
+    <updated>2015-09-11T07:42:19.209Z</updated>
+    <content type="html"><![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
+]]>
+    </summary>
+    
+      <category term="Blog" scheme="http://yoursite.com/tags/Blog/"/>
+    
+      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello, Hexo world]]></title>
+    <link href="http://yoursite.com/2015/09/11/Hello-Hexo-world/"/>
+    <id>http://yoursite.com/2015/09/11/Hello-Hexo-world/</id>
+    <published>2015-09-11T06:01:28.000Z</published>
+    <updated>2015-09-11T06:01:28.921Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://yoursite.com/2015/09/11/hello-world/"/>
+    <id>http://yoursite.com/2015/09/11/hello-world/</id>
+    <published>2015-09-11T05:51:21.512Z</published>
+    <updated>2015-09-11T05:51:21.512Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
