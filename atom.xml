@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术派]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-09-15T02:35:25.416Z</updated>
+  <updated>2015-09-15T07:08:04.595Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[在ActionBar中提供分享按钮]]></title>
+    <link href="http://yoursite.com/2015/09/15/share-action-provider/"/>
+    <id>http://yoursite.com/2015/09/15/share-action-provider/</id>
+    <published>2015-09-15T07:08:04.595Z</published>
+    <updated>2015-09-15T07:08:04.595Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionProvider</strong>。<br>我们只需要提供一个share intent，然后其他的东西都由ShareActionProvider来完成。<br>为了使用ShareActionProvider，只需要在定义Activity菜单的资源文件中加入一个item，如以下代码</p>
+<pre><code>&lt;menu xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;
+    &lt;<span class="property">item</span>
+            android:<span class="property">id</span>=<span class="string">"@+id/menu_item_share"</span>
+            android:showAsAction=<span class="string">"ifRoom"</span>
+            android:title=<span class="string">"Share"</span>
+            android:actionProviderClass=
+                <span class="string">"android.widget.ShareActionProvider"</span> /&gt;
+    ...
+&lt;/menu&gt;
+</code></pre><p>然后呢，我们要给ShareActionProvider设置一个Share Intent。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ShareActionProvider mShareActionProvider;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Inflate menu resource file.</span></span><br><span class="line">    getMenuInflater().inflate(R.menu.share_menu, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Locate MenuItem with ShareActionProvider</span></span><br><span class="line">    MenuItem item = menu.findItem(R.id.menu_item_share);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Fetch and store ShareActionProvider</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider) item.getActionProvider();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return true to display menu</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call to update the share intent</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setShareIntent</span><span class="params">(Intent shareIntent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mShareActionProvider != <span class="keyword">null</span>) &#123;</span><br><span class="line">        mShareActionProvider.setShareIntent(shareIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong> 如果你使用<strong>Support Library</strong>，那么使用上面的代码的结果就是应用程序错误</p>
+<p>在使用<strong>Support Library</strong>的时候，代码应该是这样的：</p>
+<pre><code><span class="tag">&lt;<span class="title">menu</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
+      <span class="attribute">xmlns:yourapp</span>=<span class="value">"http://schemas.android.com/apk/res-auto"</span> &gt;</span>
+    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:id</span>=<span class="value">"@+id/action_share"</span>
+          <span class="attribute">android:title</span>=<span class="value">"@string/share"</span>
+          <span class="attribute">app:showAsAction</span>=<span class="value">"ifRoom"</span>
+          <span class="attribute">app:actionProviderClass</span>=<span class="value">"android.support.v7.widget.ShareActionProvider"</span>
+          /&gt;</span>
+    ...
+<span class="tag">&lt;/<span class="title">menu</span>&gt;</span>
+</code></pre><p>而相应的java代码应该是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    getMenuInflater().inflate(R.menu.main_activity_actions, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set up ShareActionProvider's default share intent</span></span><br><span class="line">    MenuItem shareItem = menu.findItem(R.id.action_share);</span><br><span class="line">	<span class="comment">//这里，是关键的不同</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider)</span><br><span class="line">            MenuItemCompat.getActionProvider(shareItem);</span><br><span class="line">    mShareActionProvider.setShareIntent(getDefaultIntent());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionPro]]>
+    </summary>
+    
+      <category term="ActionBar" scheme="http://yoursite.com/tags/ActionBar/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Training" scheme="http://yoursite.com/tags/Training/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[好玩的Android版本代号]]></title>
