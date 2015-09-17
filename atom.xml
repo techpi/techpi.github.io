@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术派]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-09-15T07:10:18.216Z</updated>
+  <updated>2015-09-17T00:59:59.082Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[在aws免费云服务上安装Shadowsocks以及vpn]]></title>
+    <link href="http://yoursite.com/2015/09/17/deploy-vpn-shadowsocks-on-aws/"/>
+    <id>http://yoursite.com/2015/09/17/deploy-vpn-shadowsocks-on-aws/</id>
+    <published>2015-09-17T00:59:59.082Z</published>
+    <updated>2015-09-17T00:59:59.082Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
+<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变的，重启一次服务器IP就变了，所以为了IP固定不变，可以申请一个弹性IP。但是你申请的弹性IP，一定要及时绑定到你的运行着的服务器上，不然是要收费的。</p>
+<p>我选择的Ubuntu server，所以在上面安装vpn和shadowsocks都简单的要命……</p>
+<h2 id="shadowsocks"><strong>shadowsocks</strong></h2><h3 id="安装"><strong>安装</strong></h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><strong>使用</strong></h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -<span class="tag">p</span> <span class="number">443</span> -k password -m rc4-md5</span><br></pre></td></tr></table></figure>
+<p>如果要后台运行：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 443 -k password -<span class="keyword">m</span> rc4-md5 --user nobody -<span class="keyword">d</span> start</span><br></pre></td></tr></table></figure>
+<p>如果要停止：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver <span class="operator">-d</span> stop</span><br></pre></td></tr></table></figure>
+<p>如果要检查日志：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo less /<span class="built_in">var</span>/<span class="keyword">log</span>/shadowsocks<span class="built_in">.</span><span class="keyword">log</span></span><br></pre></td></tr></table></figure>
+<p><strong>参考</strong>： <a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">shadowsocks github</a></p>
+<h2 id="vpn安装"><strong>vpn安装</strong></h2><p>直接参考这个：<a href="http://www.bitbottle.com/archives/132.html/2" target="_blank" rel="external">利用AWS免费搭建私人VPN</a></p>
+<hr>
+<p><strong>切记</strong>，这两个安装完了以后，不要忘记打开防火墙的相应端口。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
+<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变]]>
+    </summary>
+    
+      <category term="Shadowsocks" scheme="http://yoursite.com/tags/Shadowsocks/"/>
+    
+      <category term="aws" scheme="http://yoursite.com/tags/aws/"/>
+    
+      <category term="免费" scheme="http://yoursite.com/tags/%E5%85%8D%E8%B4%B9/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[在ActionBar中提供分享按钮]]></title>
