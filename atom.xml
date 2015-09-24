@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术派]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-09-17T06:52:40.767Z</updated>
+  <updated>2015-09-24T06:48:17.796Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,204 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Loaders]]></title>
+    <link href="http://yoursite.com/2015/09/24/loaders-in-android/"/>
+    <id>http://yoursite.com/2015/09/24/loaders-in-android/</id>
+    <published>2015-09-24T06:48:17.796Z</published>
+    <updated>2015-09-24T06:48:17.796Z</updated>
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>这篇文章是对developer.android.com上<strong>API Guides</strong>中关于Loaders内容的翻译，肯定网上已经有人翻译，但是反正自己要看，所以不如顺便翻译一遍</p>
+</blockquote>
+<p>Loaders是Android 3.0引入的，它可以使得在Activity或者Fragment中<strong>异步加载数据</strong>变得更加简单。Loaders具有以下的特征：</p>
+<ul>
+<li>在每个Activity或者Fragment中都可以使用</li>
+<li>他们可以提供数据的异步加载</li>
+<li>他们可以监控数据源并且当数据发生变化时传送新的结果</li>
+<li>在配置发生变化的时候，他们会自动重新连接到最后的loader cursor，因此，Loaders不需要重新查询数据</li>
+</ul>
+<h2 id="Loader_API_概述">Loader API 概述</h2><p>在应用中使用Loader主要涉及到以下几个类和接口。下表对这些类和接口进行了总结：</p>
+<table>
+<thead>
+<tr>
+<th>类/接口</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LoaderManager</td>
+<td>抽象类，与Activity或者Fragment关联在一起，用来管理Loader的实例。这可以帮助应用程序管理长时间运行的操作，配合Activity和Fragment的生命周期。最常用的情况是和CursorLoader一起使用，但是应用可以自由的编写自己的Loader来加载各种其他数据。<br>每个Activity或者Fragment只能有一个LoaderManager，但是每个LoaderManager可以有多个Loader。</td>
+</tr>
+<tr>
+<td>LoaderManager.LoaderCallbacks</td>
+<td>一个回调接口，客户端可以使用这个接口和LoaderManager进行交互。例如，你可以使用onCreateLoader()回调方法来创建一个新的Loader。</td>
+</tr>
+<tr>
+<td>Loader</td>
+<td>抽象类，用来执行数据的异步加载。Loader的基类。通常你会使用CursorLoader，但是你也可以使用自定义的子类。当Loaders是活动状态时，他们可以监控他们的数据源，并且当数据源内容变化时发布新的结果</td>
+</tr>
+<tr>
+<td>AsyncTaskLoader</td>
+<td>一个抽象的Loader，使用AsyncTask来进行异步加载</td>
+</tr>
+<tr>
+<td>CursorLoader</td>
+<td>AsyncTaskLoader的一个子类，用于查询ContentResolver并且返回一个Cursor。这个类使用标准方式实现了Loader协议，用于查询Cursors，它构建于AsyncTaskLoader之上在后台线程中查询游标以免阻塞UI线程。使用Loader的最好的方式就是从ContentProvider异步加载数据，而不是从fragment或者activity中执行<strong>managed query</strong>。</td>
+</tr>
+</tbody>
+</table>
+<p>上面表格中的类和接口是你在应用中实现Loader的基础组件。你并不需要在每个Loader中都使用到上述类或者接口，但是为了初始化Loader以及实现Loader的子类（就像CursorLoader），你总是会使用到LoaderManager。以下各节介绍了在应用中你应该如何使用这些类和接口。</p>
+<h2 id="在应用中使用Loader">在应用中使用Loader</h2><p>本节介绍如何在Android应用中使用Loaders。使用Loaders的应用一般应该包含以下：</p>
+<ul>
+<li>一个Activity或者Fragment</li>
+<li>一个LoaderManager的实例</li>
+<li>一个CursorLoader从ContentProvider加载数据。你同样可以从Loader或者AsyncTaskLoader派生实现自己的Loader子类来从其他数据源加载数据。</li>
+<li>实现LoaderManager.LoaderCallbacks接口。你应该在这里来创建新的Loader实例，并且管理对已经存在的Loader实例的引用。</li>
+<li>采用某种方式展示Loader的数据，例如使用SimpleCursorAdapter。</li>
+<li>一个数据源，例如当你使用CursorLoader的时候，就是ContentProvider</li>
+</ul>
+<h2 id="启动一个Loader">启动一个Loader</h2><p>在Activity或者Fragment中，LoaderManager管理一个或者多个Loader的实例。每个LoaderManager只能有一个LoaderManager。<br>一般应该在Activity或者Fragment的onCreate()方法中初始化一个Loader，或者在Fragment的onActivityCreate()方法中。使用如下方法来初始化：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//准备Loader。要么重新连接一个已经存在的Loader，要么开始一个新的Loader</span></span><br><span class="line">getLoaderManager().initLoader(<span class="number">0</span>,<span class="keyword">null</span>,<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p>initLoader()方法需要以下几个参数：</p>
+<ul>
+<li>一个唯一的ID用来标识这个Loader。例如在这个例子中是0.</li>
+<li>第二个参数是可选的。在构建Loader时使用，如果已经存在一个Loader，那这个参数会被忽略掉。（这个例子中是null）</li>
+<li>第三个参数是LoaderManager.LoaderCallbacks的实现，LoaderManager会调用实现类的回调方法来报告Loader的事件。在本例中，当前类实现了Loadermanager.LoaderCallbacks接口，所以本例传递this。</li>
+</ul>
+<p>initLoader()调用保证了一个Loader被初始化并处于激活状态。它可能有两种情况：</p>
+<ul>
+<li>如果该ID指定的Loader已经存在，那么上次创建Loader将会被重新使用。</li>
+<li>如果该ID制定的Loader并不存在，那么initLoader()将会调用LoaderManager.LoaderCallbacks接口的onCreateLoader()方法。你需要实现这个方法并且返回一个新的Loader。需要更多的解释，参见onCreateLoader。</li>
+</ul>
+<p>无论哪种情况，指定的LoaderManager.LoaderCallbacks实现都会和loader进行关联，并且当loader的状态发生改变是被调用。如果在调用时，调用者处于”started”状态，并且请求的Loader已经存在并且生成了它的数据，那么系统将立即调用onLoadFinished()（在initLoader()方法中），所以你必须为这种情况做准备。参考onLoadFinished()来获取更多信息。</p>
+<p>注意，initLoader()方法会返回创建的Loader，但是你却不必去保存它的引用。LoaderManager会自动管理Loader的生命周期。在合适的时候，LoaderManager会开始或者结束加载，并且会维护Loader的状态以及他们关联的内容。你极少需要直接和Loader打交道（尽管有使用loader的方法来精确的对Loader的行为进行调优的例子，参见LoaderThrottle例子。）更多的，在加载过程中你应该使用LoaderManager.LoaderCallbacks的方法来进行交互，当特定的事件发生的时候。要得到更多信息，参见<em>“使用LoaderManager回调方法”</em></p>
+<h2 id="重新开始一个Loader">重新开始一个Loader</h2><p>当你使用initLoader()时，如上所述，如果指定的ID已经存在一个Loader，那么会使用它。如果不存在，就会创建一个新的Loader。但是一些情况下，你可能会想放弃旧数据并且重新开始。</p>
+<p>为了丢弃旧数据，你可以使用restartLoader()。例如，SearchView.OnQueryTextListener在用户改变了查询关键词后重新启动了loader。loader需要重启，这样它才能获取到查询过滤器来开始一个新的查询。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onQueryTextChanged</span><span class="params">(String newText)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Called when the action bar search text has changed.  Update</span></span><br><span class="line">    <span class="comment">// the search filter, and restart the loader to do a new query</span></span><br><span class="line">    <span class="comment">// with this filter.</span></span><br><span class="line">    mCurFilter = !TextUtils.isEmpty(newText) ? newText : <span class="keyword">null</span>;</span><br><span class="line">    getLoaderManager().restartLoader(<span class="number">0</span>, <span class="keyword">null</span>, <span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用LoaderManager回调">使用LoaderManager回调</h2><p>LoaderManager.LoaderCallbacks是一个回调接口，用来让客户端和LoaderManager交互。<br>Loaders，特别是CursorLoader，在停止后会保持数据。这使得应用可以跨过Activity或者Fragment的生命周期函数，如onStop()和onStart()，保持数据，所以当用户返回到应用时，不必等待数据重新加载。使用LoaderManager.LoaderCallbacks回调方法来获取合适创建一个新的loader，以及告诉应用何时停止使用一个loader的数据等。</p>
+<p>LoaderManager.LoaderCallbacks包括以下方法：</p>
+<ul>
+<li>onCreateLoader() - 对于给定的ID，初始化并且返回一个新的loader</li>
+<li>onLoadFinished() - 当已经创建的loader完成了加载时触发</li>
+<li>onLoaderReset()  - 当已经创建的loader被重置时触发，这样会导致它的数据变得不可用。<br>这些方法在随后的几节中进行更加详细的描述。</li>
+</ul>
+<h2 id="onCreateLoader">onCreateLoader</h2><p>当你试图访问一个loader（例如，通过initLoader()）的时候，它会检查指定的ID是否已经存在一个loader。如果不存在，它就触发LoaderManager.LoaderCallbacks的onCreateLoader()方法。你应该在这个回调方法中创建一个新的loader。一般的，应该使用CursorLoader，但是你也可以实现你自己的Loader子类。</p>
+<p>在这个例子里，onCreateLoader()回调方法创建了一个CursorLoader。你必须使用CursorLoader的构造方法来创建实例，这个方法需要查询ContentProvider的所有数据。确切的说，它需要：</p>
+<ul>
+<li>uri                 - 需要获取的内容的uri</li>
+<li>projection        - 需要返回的列的列表。如果传递null，那么会返回所有列，这样可能效率不高。</li>
+<li>selection        -  一个过滤器用来定义返回哪些行， 以sql语句where子句的格式来定义（不包括Where关键字本身）。 如果传递null将会返回所有列。</li>
+<li>selectionArgs    - 你可以在selection参数中包含?符号，而这些?符号将会被selectionArgs中的值所替换，按照他们在selection中出现的顺序。这些值被限制为字符串。</li>
+<li>sortOrder        - 如何对返回的数据进行排序，以sql order by子句的形式进行格式化。如果传递null，那么结果将是没有排序的。</li>
+</ul>
+<p>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// If non-null, this is the current filter the user has provided.</span></span><br><span class="line">String mCurFilter;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">public</span> Loader&lt;Cursor&gt; <span class="title">onCreateLoader</span><span class="params">(<span class="keyword">int</span> id, Bundle args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// This is called when a new Loader needs to be created.  This</span></span><br><span class="line">    <span class="comment">// sample only has one Loader, so we don't care about the ID.</span></span><br><span class="line">    <span class="comment">// First, pick the base URI to use depending on whether we are</span></span><br><span class="line">    <span class="comment">// currently filtering.</span></span><br><span class="line">    Uri baseUri;</span><br><span class="line">    <span class="keyword">if</span> (mCurFilter != <span class="keyword">null</span>) &#123;</span><br><span class="line">        baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,</span><br><span class="line">                  Uri.encode(mCurFilter));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        baseUri = Contacts.CONTENT_URI;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Now create and return a CursorLoader that will take care of</span></span><br><span class="line">    <span class="comment">// creating a Cursor for the data being displayed.</span></span><br><span class="line">    String select = <span class="string">"(("</span> + Contacts.DISPLAY_NAME + <span class="string">" NOTNULL) AND ("</span></span><br><span class="line">            + Contacts.HAS_PHONE_NUMBER + <span class="string">"=1) AND ("</span></span><br><span class="line">            + Contacts.DISPLAY_NAME + <span class="string">" != '' ))"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> CursorLoader(getActivity(), baseUri,</span><br><span class="line">            CONTACTS_SUMMARY_PROJECTION, select, <span class="keyword">null</span>,</span><br><span class="line">            Contacts.DISPLAY_NAME + <span class="string">" COLLATE LOCALIZED ASC"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="onLoadFinished">onLoadFinished</h2><p>当一个已经创建的loader完成数据加载后会触发该方法。这个方法保证会早于该loader的旧数据的释放。基于这一点，你应该清除所有对旧数据的使用（既然它马上就要被释放掉），但是你一定不能自己去释放这些数据，因为它的loader负责这些事情。<br>一旦loader得知应用不再运行，loader会释放数据。例如，如果数据是一个curosr，来自于CursorLoader，你不应该自己调用close()方法。如果cursor被放置于CursorAdapter中，那么你应该使用swapCursor()方法，这样旧数据不会被关闭。<br>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is the Adapter being used to display the list's data.</span></span><br><span class="line">SimpleCursorAdapter mAdapter;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadFinished</span><span class="params">(Loader&lt;Cursor&gt; loader, Cursor data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Swap the new cursor in.  (The framework will take care of closing the</span></span><br><span class="line">    <span class="comment">// old cursor once we return.)</span></span><br><span class="line">    mAdapter.swapCursor(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="onLoaderReset">onLoaderReset</h2><p>当一个loader被重置时，这个方法会被触发，这会导致loader中的数据变得不可用。<br>这个回调方法让你可以找出哪些数据即将被释放，所以你可以不再使用这些数据。<br>下面的例子用null作为参数来调用swapCursor()</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">// This is the Adapter being used to display the list's data.</span><br><span class="line">SimpleCursorAdapter mAdapter;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">public void onLoaderReset(Loader&lt;Cursor&gt; loader) &#123;</span><br><span class="line">    // This is called when the last Cursor provided to onLoadFinished()</span><br><span class="line">    // above is about to be closed.  We need to make sure we are no</span><br><span class="line">    // longer using it.</span><br><span class="line">    mAdapter.swapCursor(null);</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 例子</span><br><span class="line"></span><br><span class="line">作为一个示例，这里有一个完整的实现，它使用Fragment来展示一个ListView，ListView中包含了联系人ContentProvider的查询结果。本例使用了一个CursorLoader来管理查询。</span><br><span class="line"></span><br><span class="line">对于一个访问用户的联系人的应用，就像这个例子，应该声明需要READ_CONTACTS权限。</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">public static class CursorLoaderListFragment extends ListFragment</span><br><span class="line">        implements OnQueryTextListener, LoaderManager.LoaderCallbacks&lt;Cursor&gt; &#123;</span><br><span class="line"></span><br><span class="line">    // This is the Adapter being used to display the list's data.</span><br><span class="line">    SimpleCursorAdapter mAdapter;</span><br><span class="line"></span><br><span class="line">    // If non-null, this is the current filter the user has provided.</span><br><span class="line">    String mCurFilter;</span><br><span class="line"></span><br><span class="line">    @Override public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        // Give some text to display if there is no data.  In a real</span><br><span class="line">        // application this would come from a resource.</span><br><span class="line">        setEmptyText("No phone numbers");</span><br><span class="line"></span><br><span class="line">        // We have a menu item to show in action bar.</span><br><span class="line">        setHasOptionsMenu(true);</span><br><span class="line"></span><br><span class="line">        // Create an empty adapter we will use to display the loaded data.</span><br><span class="line">        mAdapter = new SimpleCursorAdapter(getActivity(),</span><br><span class="line">                android.R.layout.simple_list_item_2, null,</span><br><span class="line">                new String[] &#123; Contacts.DISPLAY_NAME, Contacts.CONTACT_STATUS &#125;,</span><br><span class="line">                new int[] &#123; android.R.id.text1, android.R.id.text2 &#125;, 0);</span><br><span class="line">        setListAdapter(mAdapter);</span><br><span class="line"></span><br><span class="line">        // Prepare the loader.  Either re-connect with an existing one,</span><br><span class="line">        // or start a new one.</span><br><span class="line">        getLoaderManager().initLoader(0, null, this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) &#123;</span><br><span class="line">        // Place an action bar item for searching.</span><br><span class="line">        MenuItem item = menu.add("Search");</span><br><span class="line">        item.setIcon(android.R.drawable.ic_menu_search);</span><br><span class="line">        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);</span><br><span class="line">        SearchView sv = new SearchView(getActivity());</span><br><span class="line">        sv.setOnQueryTextListener(this);</span><br><span class="line">        item.setActionView(sv);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean onQueryTextChange(String newText) &#123;</span><br><span class="line">        // Called when the action bar search text has changed.  Update</span><br><span class="line">        // the search filter, and restart the loader to do a new query</span><br><span class="line">        // with this filter.</span><br><span class="line">        mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;</span><br><span class="line">        getLoaderManager().restartLoader(0, null, this);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public boolean onQueryTextSubmit(String query) &#123;</span><br><span class="line">        // Don't care about this.</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public void onListItemClick(ListView l, View v, int position, long id) &#123;</span><br><span class="line">        // Insert desired behavior here.</span><br><span class="line">        Log.i("FragmentComplexList", "Item clicked: " + id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // These are the Contacts rows that we will retrieve.</span><br><span class="line">    static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] &#123;</span><br><span class="line">        Contacts._ID,</span><br><span class="line">        Contacts.DISPLAY_NAME,</span><br><span class="line">        Contacts.CONTACT_STATUS,</span><br><span class="line">        Contacts.CONTACT_PRESENCE,</span><br><span class="line">        Contacts.PHOTO_ID,</span><br><span class="line">        Contacts.LOOKUP_KEY,</span><br><span class="line">    &#125;;</span><br><span class="line">    public Loader&lt;Cursor&gt; onCreateLoader(int id, Bundle args) &#123;</span><br><span class="line">        // This is called when a new Loader needs to be created.  This</span><br><span class="line">        // sample only has one Loader, so we don't care about the ID.</span><br><span class="line">        // First, pick the base URI to use depending on whether we are</span><br><span class="line">        // currently filtering.</span><br><span class="line">        Uri baseUri;</span><br><span class="line">        if (mCurFilter != null) &#123;</span><br><span class="line">            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,</span><br><span class="line">                    Uri.encode(mCurFilter));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            baseUri = Contacts.CONTENT_URI;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Now create and return a CursorLoader that will take care of</span><br><span class="line">        // creating a Cursor for the data being displayed.</span><br><span class="line">        String select = "((" + Contacts.DISPLAY_NAME + " NOTNULL) AND ("</span><br><span class="line">                + Contacts.HAS_PHONE_NUMBER + "=1) AND ("</span><br><span class="line">                + Contacts.DISPLAY_NAME + " != '' ))";</span><br><span class="line">        return new CursorLoader(getActivity(), baseUri,</span><br><span class="line">                CONTACTS_SUMMARY_PROJECTION, select, null,</span><br><span class="line">                Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC");</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onLoadFinished(Loader&lt;Cursor&gt; loader, Cursor data) &#123;</span><br><span class="line">        // Swap the new cursor in.  (The framework will take care of closing the</span><br><span class="line">        // old cursor once we return.)</span><br><span class="line">        mAdapter.swapCursor(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onLoaderReset(Loader&lt;Cursor&gt; loader) &#123;</span><br><span class="line">        // This is called when the last Cursor provided to onLoadFinished()</span><br><span class="line">        // above is about to be closed.  We need to make sure we are no</span><br><span class="line">        // longer using it.</span><br><span class="line">        mAdapter.swapCursor(null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我测试的<a href="/files/contact.zip">小例子</a>，AndroidStudio项目</p>
+</blockquote>
+<h2 id="更多例子">更多例子</h2><p>在ApiDemo中有几个不同的例子可以验证如何使用loaders</p>
+<ul>
+<li>LoaderCursor        - 以上示例代码的完整版本</li>
+<li><p>LoaderThrottle    - 使用节流技术来减少数据改变时查询次数的例子</p>
+<p>关于下载和安装SDK示例的更多信息，参考<a href="http://developer.android.com/resources/samples/get.html" target="_blank" rel="external">“Gettting the Samples”</a></p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<blockquote>
+<p>这篇文章是对developer.android.com上<strong>API Guides</strong>中关于Loaders内容的翻译，肯定网上已经有人翻译，但是反正自己要看，所以不如顺便翻译一遍</p>
+</blockquote>]]>
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Loaders" scheme="http://yoursite.com/tags/Loaders/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android Studio 快捷键整理分享-SadieYu]]></title>
+    <link href="http://yoursite.com/2015/09/21/android-studio-shortcuts/"/>
+    <id>http://yoursite.com/2015/09/21/android-studio-shortcuts/</id>
+    <published>2015-09-21T02:16:34.437Z</published>
+    <updated>2015-09-21T02:16:33.237Z</updated>
+    <content type="html"><![CDATA[<p>Alt+回车 导入包,自动修正</p>
+<p>Ctrl+N   查找类</p>
+<p>Ctrl+Shift+N 查找文件</p>
+<p>Ctrl+Alt+L  格式化代码</p>
+<p>Ctrl+Alt+O 优化导入的类和包</p>
+<p>Alt+Insert 生成代码(如get,set方法,构造函数等)</p>
+<p>Ctrl+E或者Alt+Shift+C  最近更改的代码</p>
+<p>Ctrl+R 替换文本</p>
+<p>Ctrl+F 查找文本</p>
+<p>Ctrl+Shift+Space 自动补全代码</p>
+<p>Ctrl+空格 代码提示</p>
+<p>Ctrl+Alt+Space 类名或接口名提示</p>
+<p>Ctrl+P 方法参数提示</p>
+<p>Ctrl+Shift+Alt+N 查找类中的方法或变量</p>
+<p>Alt+Shift+C 对比最近修改的代码</p>
+<p>Shift+F6  重构-重命名</p>
+<p>Ctrl+Shift+先上键</p>
+<p>Ctrl+X 删除行</p>
+<p>Ctrl+D 复制行</p>
+<p>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者 ）</p>
+<p>Ctrl+J  自动代码</p>
+<p>Ctrl+E 最近打开的文件</p>
+<p>Ctrl+H 显示类结构图</p>
+<p>Ctrl+Q 显示注释文档</p>
+<p>Alt+F1 查找代码所在位置</p>
+<p>Alt+1 快速打开或隐藏工程面板</p>
+<p>Ctrl+Alt+ left/right 返回至上次浏览的位置</p>
+<p>Alt+ left/right 切换代码视图</p>
+<p>Alt+ Up/Down 在方法间快速移动定位</p>
+<p>Ctrl+Shift+Up/Down 代码向上/下移动。</p>
+<p>F2 或Shift+F2 高亮错误或警告快速定位</p>
+<p>代码标签输入完成后，按Tab，生成代码。</p>
+<p>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。</p>
+<p>Ctrl+W 选中代码，连续按会有其他效果</p>
+<p>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。</p>
+<p>Ctrl+Up/Down 光标跳转到第一行或最后一行下</p>
+<p>Ctrl+B 快速打开光标处的类或方法 </p>
+<p>最常用快捷键</p>
+<p>1.Ctrl＋E，可以显示最近编辑的文件列表</p>
+<p>2.Shift＋Click可以关闭文件</p>
+<p>3.Ctrl＋[或]可以跳到大括号的开头结尾</p>
+<p>4.Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方</p>
+<p>5.Ctrl＋F12，可以显示当前文件的结构</p>
+<p>6.Ctrl＋F7可以查询当前元素在当前文件中的引用，然后按F3可以选择</p>
+<p>7.Ctrl＋N，可以快速打开类</p>
+<p>8.Ctrl＋Shift＋N，可以快速打开文件</p>
+<p>9.Alt＋Q可以看到当前方法的声明</p>
+<p>10.Ctrl＋W可以选择单词继而语句继而行继而函数</p>
+<p>11.Alt＋F1可以将正在编辑的元素在各个面板中定位</p>
+<p>12.Ctrl＋P，可以显示参数信息</p>
+<p>13.Ctrl＋Shift＋Insert可以选择剪贴板内容并插入</p>
+<p>14.Alt＋Insert可以生成构造器/Getter/Setter等</p>
+<p>15.Ctrl＋Alt＋V 可以引入变量。例如把括号内的SQL赋成一个变量</p>
+<p>16.Ctrl＋Alt＋T可以把代码包在一块内，例如try/catch</p>
+<p>17.Alt＋Up and Alt＋Down可在方法间快速移动</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Alt+回车 导入包,自动修正</p>
+<p>Ctrl+N   查找类</p>
+<p>Ctrl+Shift+N 查找文件</p>
+<p>Ctrl+Alt+L  格式化代码</p>
+<p>Ctrl+Alt+O 优化导入的类和包</p>
+<p>Alt+Insert 生成代码(如]]>
+    </summary>
+    
+      <category term="Android Studio" scheme="http://yoursite.com/tags/Android-Studio/"/>
+    
+      <category term="快捷键" scheme="http://yoursite.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Git学习笔记一]]></title>
