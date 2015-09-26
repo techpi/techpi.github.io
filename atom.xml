@@ -4,7 +4,7 @@
   <subtitle><![CDATA[技术派]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-09-24T06:48:17.796Z</updated>
+  <updated>2015-09-14T05:20:27.730Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,475 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Markdown语法学习笔记]]></title>
+    <link href="http://yoursite.com/2015/09/26/Markdown-Grammar/"/>
+    <id>http://yoursite.com/2015/09/26/Markdown-Grammar/</id>
+    <published>2015-09-26T03:00:18.704Z</published>
+    <updated>2015-09-14T05:20:27.730Z</updated>
+    <content type="html"><![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
+<hr>
+<h2 id="1、文本的样式">1、文本的样式</h2><hr>
+<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><strong>效果</strong>： <strong>粗体文本</strong></p>
+<hr>
+<h3 id="1-2、斜体">1.2、斜体</h3><p><strong>语法</strong>： *需要设置成斜体的文字*<br><strong>效果</strong>： <em>斜体文字</em></p>
+<hr>
+<h3 id="1-3、_删除线">1.3、 删除线</h3><p><strong>语法</strong>： ~ ~文字~ ~ （<strong>注意：中间无空格</strong>）<br><strong>效果</strong>： <del>文字</del></p>
+<hr>
+<h3 id="1-4、_超链接">1.4、 超链接</h3><p><strong>效果</strong>： <a href="http://202.110.203.12" target="_blank" rel="external">超链接标题</a></p>
+<hr>
+<h3 id="1-5、_图片">1.5、 图片</h3><p><strong>效果</strong>： <img src="/img/barcode.png" alt="图片替代文本" title="图片标题"></p>
+<hr>
+<h3 id="1-6、代码">1.6、代码</h3><p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">    System.out.println(<span class="string">"Hello, World!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>inline 代码</strong><br><code>System.out.println(&quot;Hello, World&quot;);</code></p>
+<hr>
+<h3 id="1-7、_列表">1.7、 列表</h3><p><strong>效果</strong>： </p>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<p><strong>注意！-前面一定要有个空格！</strong></p>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<ul>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ul>
+<p><strong>有序列表</strong></p>
+<ol>
+<li>Item1</li>
+<li>Item2</li>
+<li>Item3</li>
+</ol>
+<hr>
+<h3 id="1-8_引用">1.8 引用</h3><p><strong>效果</strong>： </p>
+<blockquote>
+<p>装B也是一种品质</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
+<hr>
+<h2 id="1、文本的样式">1、文本的样式</h2><hr>
+<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><str]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在aws免费云服务上安装Shadowsocks以及vpn]]></title>
+    <link href="http://yoursite.com/2015/09/26/deploy-vpn-shadowsocks-on-aws/"/>
+    <id>http://yoursite.com/2015/09/26/deploy-vpn-shadowsocks-on-aws/</id>
+    <published>2015-09-26T03:00:18.680Z</published>
+    <updated>2015-09-17T00:59:59.082Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
+<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变的，重启一次服务器IP就变了，所以为了IP固定不变，可以申请一个弹性IP。但是你申请的弹性IP，一定要及时绑定到你的运行着的服务器上，不然是要收费的。</p>
+<p>我选择的Ubuntu server，所以在上面安装vpn和shadowsocks都简单的要命……</p>
+<h2 id="shadowsocks"><strong>shadowsocks</strong></h2><h3 id="安装"><strong>安装</strong></h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><strong>使用</strong></h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -<span class="tag">p</span> <span class="number">443</span> -k password -m rc4-md5</span><br></pre></td></tr></table></figure>
+<p>如果要后台运行：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 443 -k password -<span class="keyword">m</span> rc4-md5 --user nobody -<span class="keyword">d</span> start</span><br></pre></td></tr></table></figure>
+<p>如果要停止：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver <span class="operator">-d</span> stop</span><br></pre></td></tr></table></figure>
+<p>如果要检查日志：</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo less /<span class="built_in">var</span>/<span class="keyword">log</span>/shadowsocks<span class="built_in">.</span><span class="keyword">log</span></span><br></pre></td></tr></table></figure>
+<p><strong>参考</strong>： <a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">shadowsocks github</a></p>
+<h2 id="vpn安装"><strong>vpn安装</strong></h2><p>直接参考这个：<a href="http://www.bitbottle.com/archives/132.html/2" target="_blank" rel="external">利用AWS免费搭建私人VPN</a></p>
+<hr>
+<p><strong>切记</strong>，这两个安装完了以后，不要忘记打开防火墙的相应端口。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
+<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变]]>
+    </summary>
+    
+      <category term="Shadowsocks" scheme="http://yoursite.com/tags/Shadowsocks/"/>
+    
+      <category term="aws" scheme="http://yoursite.com/tags/aws/"/>
+    
+      <category term="免费" scheme="http://yoursite.com/tags/%E5%85%8D%E8%B4%B9/"/>
+    
+      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在Github上搭建自己的个人Blog]]></title>
+    <link href="http://yoursite.com/2015/09/26/build-my-blog/"/>
+    <id>http://yoursite.com/2015/09/26/build-my-blog/</id>
+    <published>2015-09-26T03:00:18.651Z</published>
+    <updated>2015-09-11T07:42:19.209Z</updated>
+    <content type="html"><![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
+]]>
+    </summary>
+    
+      <category term="Blog" scheme="http://yoursite.com/tags/Blog/"/>
+    
+      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[好玩的Android版本代号]]></title>
+    <link href="http://yoursite.com/2015/09/26/Android-version/"/>
+    <id>http://yoursite.com/2015/09/26/Android-version/</id>
+    <published>2015-09-26T03:00:18.642Z</published>
+    <updated>2015-09-15T02:35:25.416Z</updated>
+    <content type="html"><![CDATA[<hr>
+<ul>
+<li>Android 1.5        Cupcake                纸杯蛋糕</li>
+<li>Android 1.6         Donut                 甜甜圈</li>
+<li>Android 2.0/2.1     Eclair                 闪电泡芙</li>
+<li>Android 2.2         Froyo                冻酸奶</li>
+<li>Android 2.3        GingerBread            姜人饼</li>
+<li>Android 3.0        Honeycomb            蜂巢</li>
+<li>Android 4.0        Ice Cream Sandwich    冰淇淋三明治</li>
+<li>Android 5.0/5.1    Lollipop            棒棒糖</li>
+<li>Android 6.0        Marshmallow            棉花糖</li>
+</ul>
+<p>猜猜下个版本会叫什么名字……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<ul>
+<li>Android 1.5        Cupcake                纸杯蛋糕</li>
+<li>Android 1.6         Donut                 甜甜圈</li>
+<li>Android 2.0/2.1]]>
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="代码" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[在ActionBar中提供分享按钮]]></title>
+    <link href="http://yoursite.com/2015/09/26/share-action-provider/"/>
+    <id>http://yoursite.com/2015/09/26/share-action-provider/</id>
+    <published>2015-09-26T03:00:18.632Z</published>
+    <updated>2015-09-15T07:10:18.216Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionProvider</strong>。<br>我们只需要提供一个share intent，然后其他的东西都由ShareActionProvider来完成。<br>为了使用ShareActionProvider，只需要在定义Activity菜单的资源文件中加入一个item，如以下代码</p>
+<pre><code>&lt;menu xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;
+    &lt;<span class="property">item</span>
+            android:<span class="property">id</span>=<span class="string">"@+id/menu_item_share"</span>
+            android:showAsAction=<span class="string">"ifRoom"</span>
+            android:title=<span class="string">"Share"</span>
+            android:actionProviderClass=
+                <span class="string">"android.widget.ShareActionProvider"</span> /&gt;
+    ...
+&lt;/menu&gt;
+</code></pre><p>然后呢，我们要给ShareActionProvider设置一个Share Intent。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ShareActionProvider mShareActionProvider;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Inflate menu resource file.</span></span><br><span class="line">    getMenuInflater().inflate(R.menu.share_menu, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Locate MenuItem with ShareActionProvider</span></span><br><span class="line">    MenuItem item = menu.findItem(R.id.menu_item_share);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Fetch and store ShareActionProvider</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider) item.getActionProvider();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return true to display menu</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call to update the share intent</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setShareIntent</span><span class="params">(Intent shareIntent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mShareActionProvider != <span class="keyword">null</span>) &#123;</span><br><span class="line">        mShareActionProvider.setShareIntent(shareIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong> 如果你使用<strong>Support Library</strong>，那么使用上面的代码的结果就是应用程序错误</p>
+<p>在使用<strong>Support Library</strong>的时候，代码应该是这样的：</p>
+<pre><code><span class="tag">&lt;<span class="title">menu</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
+      <span class="attribute">xmlns:yourapp</span>=<span class="value">"http://schemas.android.com/apk/res-auto"</span> &gt;</span>
+    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:id</span>=<span class="value">"@+id/action_share"</span>
+          <span class="attribute">android:title</span>=<span class="value">"@string/share"</span>
+          <span class="attribute">app:showAsAction</span>=<span class="value">"ifRoom"</span>
+          <span class="attribute">app:actionProviderClass</span>=<span class="value">"android.support.v7.widget.ShareActionProvider"</span>
+          /&gt;</span>
+    ...
+<span class="tag">&lt;/<span class="title">menu</span>&gt;</span>
+</code></pre><p>而相应的java代码应该是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    getMenuInflater().inflate(R.menu.main_activity_actions, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set up ShareActionProvider's default share intent</span></span><br><span class="line">    MenuItem shareItem = menu.findItem(R.id.action_share);</span><br><span class="line">	<span class="comment">//这里，是关键的不同</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider)</span><br><span class="line">            MenuItemCompat.getActionProvider(shareItem);</span><br><span class="line">    mShareActionProvider.setShareIntent(getDefaultIntent());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionPro]]>
+    </summary>
+    
+      <category term="ActionBar" scheme="http://yoursite.com/tags/ActionBar/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Training" scheme="http://yoursite.com/tags/Training/"/>
+    
+      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Android Studio 快捷键整理分享-SadieYu]]></title>
+    <link href="http://yoursite.com/2015/09/26/android-studio-shortcuts/"/>
+    <id>http://yoursite.com/2015/09/26/android-studio-shortcuts/</id>
+    <published>2015-09-26T02:58:40.444Z</published>
+    <updated>2015-09-21T02:16:33.237Z</updated>
+    <content type="html"><![CDATA[<p>Alt+回车 导入包,自动修正</p>
+<p>Ctrl+N   查找类</p>
+<p>Ctrl+Shift+N 查找文件</p>
+<p>Ctrl+Alt+L  格式化代码</p>
+<p>Ctrl+Alt+O 优化导入的类和包</p>
+<p>Alt+Insert 生成代码(如get,set方法,构造函数等)</p>
+<p>Ctrl+E或者Alt+Shift+C  最近更改的代码</p>
+<p>Ctrl+R 替换文本</p>
+<p>Ctrl+F 查找文本</p>
+<p>Ctrl+Shift+Space 自动补全代码</p>
+<p>Ctrl+空格 代码提示</p>
+<p>Ctrl+Alt+Space 类名或接口名提示</p>
+<p>Ctrl+P 方法参数提示</p>
+<p>Ctrl+Shift+Alt+N 查找类中的方法或变量</p>
+<p>Alt+Shift+C 对比最近修改的代码</p>
+<p>Shift+F6  重构-重命名</p>
+<p>Ctrl+Shift+先上键</p>
+<p>Ctrl+X 删除行</p>
+<p>Ctrl+D 复制行</p>
+<p>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者 ）</p>
+<p>Ctrl+J  自动代码</p>
+<p>Ctrl+E 最近打开的文件</p>
+<p>Ctrl+H 显示类结构图</p>
+<p>Ctrl+Q 显示注释文档</p>
+<p>Alt+F1 查找代码所在位置</p>
+<p>Alt+1 快速打开或隐藏工程面板</p>
+<p>Ctrl+Alt+ left/right 返回至上次浏览的位置</p>
+<p>Alt+ left/right 切换代码视图</p>
+<p>Alt+ Up/Down 在方法间快速移动定位</p>
+<p>Ctrl+Shift+Up/Down 代码向上/下移动。</p>
+<p>F2 或Shift+F2 高亮错误或警告快速定位</p>
+<p>代码标签输入完成后，按Tab，生成代码。</p>
+<p>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。</p>
+<p>Ctrl+W 选中代码，连续按会有其他效果</p>
+<p>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。</p>
+<p>Ctrl+Up/Down 光标跳转到第一行或最后一行下</p>
+<p>Ctrl+B 快速打开光标处的类或方法 </p>
+<p>最常用快捷键</p>
+<p>1.Ctrl＋E，可以显示最近编辑的文件列表</p>
+<p>2.Shift＋Click可以关闭文件</p>
+<p>3.Ctrl＋[或]可以跳到大括号的开头结尾</p>
+<p>4.Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方</p>
+<p>5.Ctrl＋F12，可以显示当前文件的结构</p>
+<p>6.Ctrl＋F7可以查询当前元素在当前文件中的引用，然后按F3可以选择</p>
+<p>7.Ctrl＋N，可以快速打开类</p>
+<p>8.Ctrl＋Shift＋N，可以快速打开文件</p>
+<p>9.Alt＋Q可以看到当前方法的声明</p>
+<p>10.Ctrl＋W可以选择单词继而语句继而行继而函数</p>
+<p>11.Alt＋F1可以将正在编辑的元素在各个面板中定位</p>
+<p>12.Ctrl＋P，可以显示参数信息</p>
+<p>13.Ctrl＋Shift＋Insert可以选择剪贴板内容并插入</p>
+<p>14.Alt＋Insert可以生成构造器/Getter/Setter等</p>
+<p>15.Ctrl＋Alt＋V 可以引入变量。例如把括号内的SQL赋成一个变量</p>
+<p>16.Ctrl＋Alt＋T可以把代码包在一块内，例如try/catch</p>
+<p>17.Alt＋Up and Alt＋Down可在方法间快速移动</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Alt+回车 导入包,自动修正</p>
+<p>Ctrl+N   查找类</p>
+<p>Ctrl+Shift+N 查找文件</p>
+<p>Ctrl+Alt+L  格式化代码</p>
+<p>Ctrl+Alt+O 优化导入的类和包</p>
+<p>Alt+Insert 生成代码(如]]>
+    </summary>
+    
+      <category term="Android Studio" scheme="http://yoursite.com/tags/Android-Studio/"/>
+    
+      <category term="快捷键" scheme="http://yoursite.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[hexo 学习笔记]]></title>
+    <link href="http://yoursite.com/2015/09/26/hexo-learning/"/>
+    <id>http://yoursite.com/2015/09/26/hexo-learning/</id>
+    <published>2015-09-26T02:55:29.583Z</published>
+    <updated>2015-09-17T03:00:37.706Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p><strong>重要参考：</strong> <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">hexo写作指南</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<hr>
+<p><strong>重要参考：</strong> <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">hexo写作指南</a></p>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://yoursite.com/2015/09/26/hello-world/"/>
+    <id>http://yoursite.com/2015/09/26/hello-world/</id>
+    <published>2015-09-26T02:55:29.575Z</published>
+    <updated>2015-09-11T05:51:21.512Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Content Providers]]></title>
+    <link href="http://yoursite.com/2015/09/25/content-provider-in-android-api-guide/"/>
+    <id>http://yoursite.com/2015/09/25/content-provider-in-android-api-guide/</id>
+    <published>2015-09-25T00:00:00.000Z</published>
+    <updated>2015-09-25T08:19:17.238Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。</p>
+</blockquote>
+<p>Content Providers 管理对<strong>结构化数据</strong>的访问。他们用于封装数据，并且提供了安全的定义数据的机制。 Content Provider 是从一个进程中访问另外一个进程数据的标准接口。</p>
+<p>当你想要访问一个Content Provider中的数据时， 你需要在你的应用Context中使用ContentResolver来作为一个客户端和内容提供者通讯。 ContentResolver对象和提供者对象通讯， 这些对象是实现了ContentProvider的类的实例。 提供者对象从客户端接收请求， 执行请求的动作， 然后返回结果。</p>
+<p>如果你不需要和其他应用共享你的数据，那么你不必开发自己的内容提供者。但是，你确实需要实现内容提供者来提供自定义的搜索建议。你同样需要自己实现内容提供者，如果你要复制粘贴复杂的数据和文件到其他的应用程序中。</p>
+<p>Android本身提供了大量的内容提供者来管理各种数据，例如音频、视频、图像以及个人联系人信息。你可以在参考文档中的android.provider包中找到一些。这些内容提供者可以被任何安卓应用有限制的访问。</p>
+<p>以下主题描述了内容提供者的更多细节：</p>
+<ul>
+<li><a href="#Basics">内容提供者基础</a><br> 如何访问ContentProvider中的数据表中的数据。</li>
+<li><a href="#Basics">创建一个内容提供者</a><br> 如何创建自己的内容提供者</li>
+<li><a href="#Calendar">日历提供者</a><br> 如何访问Android平台的日历提供者</li>
+<li><a href="#Contacts">联系人提供者</a><br> 如何访问Android平台的联系人提供者</li>
+</ul>
+<h1 id="内容提供者基础"><a name="Basics">内容提供者基础</a></h1><p>内容提供者管理对集中存放数据的访问。内容提供者是一个安卓应用程序的一部分，应用经常会提供自己的UI来操作数据。但是，内容提供者主要用来为其他应用提供服务，这些应用可以使用提供者客户端对象来访问提供者的数据。提供者与客户端一起提供了一个一致的、标准的接口来进行跨进程通讯以及安全数据访问。</p>
+<p>本文描述了以下内容的基础：</p>
+<ul>
+<li>内容提供者是如何工作的</li>
+<li>从内容提供者获取数据要采用的API</li>
+<li>使用内容提供者插入，更新以及删除数据需要使用的API</li>
+<li>其他使用内容提供者的API</li>
+</ul>
+<h2 id="概述">概述</h2><p>一个内容提供者对外部的应用程序以一个或者多个数据表的形式呈现数据，这些数据表类似关系数据库中的数据表。一行代表了某种类型对象的一个实例，而一行中的一列代表这个实例的一些数据片段。</p>
+<p>例如，Android平台内置的一个内容提供者，用户字典，存储了用户需要保存的非标准单词的拼写。表1给出了一个内容提供者数据格式的示例。<br>表1: 用户字典示例表</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>app id</th>
+<th>frequency</th>
+<th>locale</th>
+<th>_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mapreduce</td>
+<td>user1</td>
+<td>100</td>
+<td>en_US</td>
+<td>1</td>
+</tr>
+<tr>
+<td>precompiler</td>
+<td>user14</td>
+<td>200</td>
+<td>fr_FR</td>
+<td>2</td>
+</tr>
+<tr>
+<td>applet</td>
+<td>user2</td>
+<td>225</td>
+<td>fr_CA</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>表1中，每一行都代表了一个单词的实例，这些单词都可能无法在标准词典中找到。每一列都代表了这个单词的某些信息，例如第一次出现的时区信息（有点无法理解这个字段的意义，whatever，不影响理解ContentProvider）。这些列头是数据列的名字。当你说一行的locale时，你指的是locale这一列。对于这个提供者，_ID列担当了主键的角色被提供者自动维护。</p>
+<blockquote>
+<p>注意：一个内容提供者并不必须要有一个主键，而且即使有主键也不必须使用_ID来作为主键的列名。但是，如果你想要绑定一个提供者的数据到一个ListView，那么其中的一个列名必须是_ID。这个要求在”Displaying query results”章节中进行了更详细的解释。</p>
+</blockquote>
+<h3 id="访问内容提供者">访问内容提供者</h3><p>一个应用使用ContentResolver客户端对象来从内容提供者访问数据。这个对象拥有一些方法，这些方法会调用内容提供者的完全一样名字的方法，这些内容提供者是ContentProvider子类的实例。ContentResolver方法提供了基本的”CRUD”等持久化方法（创建，获取，更新，删除）。</p>
+<p>ContentResolver对象运行于客户端应用进程中，而拥有ContentProvider对象的进程负责自动处理跨进程通讯。 Content Provider同样扮演了数据仓库和数据外在表现形式（数据表）之间的抽象层的角色。</p>
+<blockquote>
+<p>注意：为了访问一个数据提供者，你的应用经常需要在Manifest文件中申请一些特定的权限。这些将在<strong>内容提供者权限</strong>章节进行详细的描述。</p>
+</blockquote>
+<p>例如，为了从用户字典提供者获取单词和地点的列表，需要调用ContentResolver.query()方法。query方法然后调用ContentProvider.query()方法，这个方法是用户字典提供者实现的。以下代码演示了这个调用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询用户词典并返回结果</span></span><br><span class="line">mCursor = getContentResolver().query(</span><br><span class="line">    UserDictionary.Words.CONTENT_URI,   <span class="comment">// 单词表的内容 URI </span></span><br><span class="line">    mProjection,                        <span class="comment">// 需要返回的列</span></span><br><span class="line">    mSelectionClause                    <span class="comment">// 查询条件</span></span><br><span class="line">    mSelectionArgs,                     <span class="comment">// 查询条件参数</span></span><br><span class="line">    mSortOrder);                        <span class="comment">// 排序方式</span></span><br></pre></td></tr></table></figure></p>
+<p>表2列出了<code>query(Uri,projection,selection,selectionArgs,sortOrder)</code>方法参数和SQL SELECT语句的对比</p>
+<p>表2 Query方法和SQL查询的对比</p>
+<table>
+<thead>
+<tr>
+<th>query()参数</th>
+<th>SELECT关键字/参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uri</td>
+<td>FROM table_name</td>
+<td>Uri对应于内容提供者的table_name数据表</td>
+</tr>
+<tr>
+<td>projection</td>
+<td>col,col,col,…</td>
+<td>projection是需要返回的列名的数组</td>
+</tr>
+<tr>
+<td>selection</td>
+<td>WHERE col=value</td>
+<td>selection指定了查询条件</td>
+</tr>
+<tr>
+<td>selectionArgs</td>
+<td>（没有完全相同的对应，SelectionArgs替代查询条件中的?占位符）</td>
+<td></td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>ORDER BY col,col</td>
+<td>sortOrder制定了返回的Cursor中每一行的排列数序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内容Uris">内容Uris</h3><p>一个内容Uri是一个URI，它唯一标识了内容提供者中的数据。内容URI包含整个内容提供者的符号名称(authority)以及指向数据表的一个名称（路径）。当你调用客户端方法来访问数据提供者的一个表的时候，该表的内容Uri是其中的一个参数。</p>
+<p>例如在前面的查询代码中，常量CONSTANT_URI包含了用户字典的words数据表的内容URI。ContentResolver对象分析出URI的authority，然后使用它来“解析”出内容提供者（通过与系统表中已知的内容提供者进行比较）。然后ContentResolver将查询分发给正确的提供者。</p>
+<p>ContentProvider使用内容URI的路径部分来选择访问哪个数据表。一个内容提供者应该为公开的每个表都提供路径。<br>在前面的代码中，words表的一个完整的URI形式应该是：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">content:</span><span class="comment">//user_dictionary/words</span></span><br></pre></td></tr></table></figure></p>
+<p>其中user_dictionary字符串是内容提供者的authority部分，words是数据表的路径部分。字符串content://(schema部分)总是存在，它标识着这是一个内容URI。<br>很多内容提供者允许你通过在末尾添加一个ID来查询数据表中一个单独的行。例如，为了从用户字典表中获取_ID为4的一行，你可以这样使用内容URI。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uri singleUri = ContentUris.withAppendedId(UserDictionary.Words.CONTENT_URI,<span class="number">4</span>);</span><br></pre></td></tr></table></figure></p>
+<p>当你获取到一些数据行之后，想要更新或者删除其中一条的时候，你会经常这样使用。</p>
+<blockquote>
+<p>注意：<code>Uri</code>和<code>UriBuilder</code>类包含了一些方便的方法用于从字符串对象构建”well-formed”（正确格式）的URI对象。<code>ContentUris</code>包含了一些方便的方法用于为一个URI添加id值。前面的代码片段使用了<code>withAppendedId()</code>来在用户字典内容URI中追加id。</p>
+</blockquote>
+<h2 id="从内容提供者读取数据">从内容提供者读取数据</h2><p>这一节描述如何从一个内容提供者读取数据，使用用户字典提供者作为一个示例。</p>
+<blockquote>
+<p>为了代码的清楚简单起见，本节的代码片段直接在UI线程中调用了ContentResolver.query()方法。但是，在实际的代码中，你应该在一个单独的线程中异步的执行查询。为了做到这一点，一种方法是使用CursorLoader类，这个类在”Loaders”向导中进行了详细的描述。同样的，这些代码只是一些片段，并不是一个完整的应用。</p>
+</blockquote>
+<p>为了从内容提供者获取数据，采用以下基本步骤：</p>
+<ol>
+<li>从提供者请求权限</li>
+<li>编写代码向提供者发送查询</li>
+</ol>
+<p>To be continued…</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。</p>
+</blockquote>
+<p]]>
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+      <category term="Content Provider" scheme="http://yoursite.com/tags/Content-Provider/"/>
+    
+      <category term="翻译" scheme="http://yoursite.com/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Loaders]]></title>
     <link href="http://yoursite.com/2015/09/24/loaders-in-android/"/>
     <id>http://yoursite.com/2015/09/24/loaders-in-android/</id>
-    <published>2015-09-24T06:48:17.796Z</published>
-    <updated>2015-09-24T06:48:17.796Z</updated>
+    <published>2015-09-24T00:00:00.000Z</published>
+    <updated>2015-09-25T08:43:31.052Z</updated>
     <content type="html"><![CDATA[<hr>
 <blockquote>
 <p>这篇文章是对developer.android.com上<strong>API Guides</strong>中关于Loaders内容的翻译，肯定网上已经有人翻译，但是反正自己要看，所以不如顺便翻译一遍</p>
@@ -108,7 +572,10 @@
 <h2 id="onLoadFinished">onLoadFinished</h2><p>当一个已经创建的loader完成数据加载后会触发该方法。这个方法保证会早于该loader的旧数据的释放。基于这一点，你应该清除所有对旧数据的使用（既然它马上就要被释放掉），但是你一定不能自己去释放这些数据，因为它的loader负责这些事情。<br>一旦loader得知应用不再运行，loader会释放数据。例如，如果数据是一个curosr，来自于CursorLoader，你不应该自己调用close()方法。如果cursor被放置于CursorAdapter中，那么你应该使用swapCursor()方法，这样旧数据不会被关闭。<br>例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is the Adapter being used to display the list's data.</span></span><br><span class="line">SimpleCursorAdapter mAdapter;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadFinished</span><span class="params">(Loader&lt;Cursor&gt; loader, Cursor data)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Swap the new cursor in.  (The framework will take care of closing the</span></span><br><span class="line">    <span class="comment">// old cursor once we return.)</span></span><br><span class="line">    mAdapter.swapCursor(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="onLoaderReset">onLoaderReset</h2><p>当一个loader被重置时，这个方法会被触发，这会导致loader中的数据变得不可用。<br>这个回调方法让你可以找出哪些数据即将被释放，所以你可以不再使用这些数据。<br>下面的例子用null作为参数来调用swapCursor()</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">// This is the Adapter being used to display the list's data.</span><br><span class="line">SimpleCursorAdapter mAdapter;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">public void onLoaderReset(Loader&lt;Cursor&gt; loader) &#123;</span><br><span class="line">    // This is called when the last Cursor provided to onLoadFinished()</span><br><span class="line">    // above is about to be closed.  We need to make sure we are no</span><br><span class="line">    // longer using it.</span><br><span class="line">    mAdapter.swapCursor(null);</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 例子</span><br><span class="line"></span><br><span class="line">作为一个示例，这里有一个完整的实现，它使用Fragment来展示一个ListView，ListView中包含了联系人ContentProvider的查询结果。本例使用了一个CursorLoader来管理查询。</span><br><span class="line"></span><br><span class="line">对于一个访问用户的联系人的应用，就像这个例子，应该声明需要READ_CONTACTS权限。</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">public static class CursorLoaderListFragment extends ListFragment</span><br><span class="line">        implements OnQueryTextListener, LoaderManager.LoaderCallbacks&lt;Cursor&gt; &#123;</span><br><span class="line"></span><br><span class="line">    // This is the Adapter being used to display the list's data.</span><br><span class="line">    SimpleCursorAdapter mAdapter;</span><br><span class="line"></span><br><span class="line">    // If non-null, this is the current filter the user has provided.</span><br><span class="line">    String mCurFilter;</span><br><span class="line"></span><br><span class="line">    @Override public void onActivityCreated(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onActivityCreated(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        // Give some text to display if there is no data.  In a real</span><br><span class="line">        // application this would come from a resource.</span><br><span class="line">        setEmptyText("No phone numbers");</span><br><span class="line"></span><br><span class="line">        // We have a menu item to show in action bar.</span><br><span class="line">        setHasOptionsMenu(true);</span><br><span class="line"></span><br><span class="line">        // Create an empty adapter we will use to display the loaded data.</span><br><span class="line">        mAdapter = new SimpleCursorAdapter(getActivity(),</span><br><span class="line">                android.R.layout.simple_list_item_2, null,</span><br><span class="line">                new String[] &#123; Contacts.DISPLAY_NAME, Contacts.CONTACT_STATUS &#125;,</span><br><span class="line">                new int[] &#123; android.R.id.text1, android.R.id.text2 &#125;, 0);</span><br><span class="line">        setListAdapter(mAdapter);</span><br><span class="line"></span><br><span class="line">        // Prepare the loader.  Either re-connect with an existing one,</span><br><span class="line">        // or start a new one.</span><br><span class="line">        getLoaderManager().initLoader(0, null, this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) &#123;</span><br><span class="line">        // Place an action bar item for searching.</span><br><span class="line">        MenuItem item = menu.add("Search");</span><br><span class="line">        item.setIcon(android.R.drawable.ic_menu_search);</span><br><span class="line">        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);</span><br><span class="line">        SearchView sv = new SearchView(getActivity());</span><br><span class="line">        sv.setOnQueryTextListener(this);</span><br><span class="line">        item.setActionView(sv);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean onQueryTextChange(String newText) &#123;</span><br><span class="line">        // Called when the action bar search text has changed.  Update</span><br><span class="line">        // the search filter, and restart the loader to do a new query</span><br><span class="line">        // with this filter.</span><br><span class="line">        mCurFilter = !TextUtils.isEmpty(newText) ? newText : null;</span><br><span class="line">        getLoaderManager().restartLoader(0, null, this);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public boolean onQueryTextSubmit(String query) &#123;</span><br><span class="line">        // Don't care about this.</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override public void onListItemClick(ListView l, View v, int position, long id) &#123;</span><br><span class="line">        // Insert desired behavior here.</span><br><span class="line">        Log.i("FragmentComplexList", "Item clicked: " + id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // These are the Contacts rows that we will retrieve.</span><br><span class="line">    static final String[] CONTACTS_SUMMARY_PROJECTION = new String[] &#123;</span><br><span class="line">        Contacts._ID,</span><br><span class="line">        Contacts.DISPLAY_NAME,</span><br><span class="line">        Contacts.CONTACT_STATUS,</span><br><span class="line">        Contacts.CONTACT_PRESENCE,</span><br><span class="line">        Contacts.PHOTO_ID,</span><br><span class="line">        Contacts.LOOKUP_KEY,</span><br><span class="line">    &#125;;</span><br><span class="line">    public Loader&lt;Cursor&gt; onCreateLoader(int id, Bundle args) &#123;</span><br><span class="line">        // This is called when a new Loader needs to be created.  This</span><br><span class="line">        // sample only has one Loader, so we don't care about the ID.</span><br><span class="line">        // First, pick the base URI to use depending on whether we are</span><br><span class="line">        // currently filtering.</span><br><span class="line">        Uri baseUri;</span><br><span class="line">        if (mCurFilter != null) &#123;</span><br><span class="line">            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,</span><br><span class="line">                    Uri.encode(mCurFilter));</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            baseUri = Contacts.CONTENT_URI;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // Now create and return a CursorLoader that will take care of</span><br><span class="line">        // creating a Cursor for the data being displayed.</span><br><span class="line">        String select = "((" + Contacts.DISPLAY_NAME + " NOTNULL) AND ("</span><br><span class="line">                + Contacts.HAS_PHONE_NUMBER + "=1) AND ("</span><br><span class="line">                + Contacts.DISPLAY_NAME + " != '' ))";</span><br><span class="line">        return new CursorLoader(getActivity(), baseUri,</span><br><span class="line">                CONTACTS_SUMMARY_PROJECTION, select, null,</span><br><span class="line">                Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC");</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onLoadFinished(Loader&lt;Cursor&gt; loader, Cursor data) &#123;</span><br><span class="line">        // Swap the new cursor in.  (The framework will take care of closing the</span><br><span class="line">        // old cursor once we return.)</span><br><span class="line">        mAdapter.swapCursor(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void onLoaderReset(Loader&lt;Cursor&gt; loader) &#123;</span><br><span class="line">        // This is called when the last Cursor provided to onLoadFinished()</span><br><span class="line">        // above is about to be closed.  We need to make sure we are no</span><br><span class="line">        // longer using it.</span><br><span class="line">        mAdapter.swapCursor(null);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This is the Adapter being used to display the list's data.</span></span><br><span class="line">SimpleCursorAdapter mAdapter;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onLoaderReset</span><span class="params">(Loader&lt;Cursor&gt; loader)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// This is called when the last Cursor provided to onLoadFinished()</span></span><br><span class="line">	<span class="comment">// above is about to be closed.  We need to make sure we are no</span></span><br><span class="line">	<span class="comment">// longer using it.</span></span><br><span class="line">	mAdapter.swapCursor(<span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例子">例子</h2><p>作为一个示例，这里有一个完整的实现，它使用Fragment来展示一个ListView，ListView中包含了联系人ContentProvider的查询结果。本例使用了一个CursorLoader来管理查询。</p>
+<p>对于一个访问用户的联系人的应用，就像这个例子，应该声明需要READ_CONTACTS权限。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CursorLoaderListFragment</span> <span class="keyword">extends</span> <span class="title">ListFragment</span></span><br><span class="line">        <span class="keyword">implements</span> <span class="title">OnQueryTextListener</span>, <span class="title">LoaderManager</span>.<span class="title">LoaderCallbacks</span>&lt;<span class="title">Cursor</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This is the Adapter being used to display the list's data.</span></span><br><span class="line">    SimpleCursorAdapter mAdapter;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If non-null, this is the current filter the user has provided.</span></span><br><span class="line">    String mCurFilter;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onActivityCreated</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onActivityCreated(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Give some text to display if there is no data.  In a real</span></span><br><span class="line">        <span class="comment">// application this would come from a resource.</span></span><br><span class="line">        setEmptyText(<span class="string">"No phone numbers"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// We have a menu item to show in action bar.</span></span><br><span class="line">        setHasOptionsMenu(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Create an empty adapter we will use to display the loaded data.</span></span><br><span class="line">        mAdapter = <span class="keyword">new</span> SimpleCursorAdapter(getActivity(),</span><br><span class="line">                android.R.layout.simple_list_item_2, <span class="keyword">null</span>,</span><br><span class="line">                <span class="keyword">new</span> String[] &#123; Contacts.DISPLAY_NAME, Contacts.CONTACT_STATUS &#125;,</span><br><span class="line">                <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; android.R.id.text1, android.R.id.text2 &#125;, <span class="number">0</span>);</span><br><span class="line">        setListAdapter(mAdapter);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Prepare the loader.  Either re-connect with an existing one,</span></span><br><span class="line">        <span class="comment">// or start a new one.</span></span><br><span class="line">        getLoaderManager().initLoader(<span class="number">0</span>, <span class="keyword">null</span>, <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu, MenuInflater inflater)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Place an action bar item for searching.</span></span><br><span class="line">        MenuItem item = menu.add(<span class="string">"Search"</span>);</span><br><span class="line">        item.setIcon(android.R.drawable.ic_menu_search);</span><br><span class="line">        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);</span><br><span class="line">        SearchView sv = <span class="keyword">new</span> SearchView(getActivity());</span><br><span class="line">        sv.setOnQueryTextListener(<span class="keyword">this</span>);</span><br><span class="line">        item.setActionView(sv);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onQueryTextChange</span><span class="params">(String newText)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Called when the action bar search text has changed.  Update</span></span><br><span class="line">        <span class="comment">// the search filter, and restart the loader to do a new query</span></span><br><span class="line">        <span class="comment">// with this filter.</span></span><br><span class="line">        mCurFilter = !TextUtils.isEmpty(newText) ? newText : <span class="keyword">null</span>;</span><br><span class="line">        getLoaderManager().restartLoader(<span class="number">0</span>, <span class="keyword">null</span>, <span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onQueryTextSubmit</span><span class="params">(String query)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Don't care about this.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onListItemClick</span><span class="params">(ListView l, View v, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Insert desired behavior here.</span></span><br><span class="line">        Log.i(<span class="string">"FragmentComplexList"</span>, <span class="string">"Item clicked: "</span> + id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// These are the Contacts rows that we will retrieve.</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String[] CONTACTS_SUMMARY_PROJECTION = <span class="keyword">new</span> String[] &#123;</span><br><span class="line">        Contacts._ID,</span><br><span class="line">        Contacts.DISPLAY_NAME,</span><br><span class="line">        Contacts.CONTACT_STATUS,</span><br><span class="line">        Contacts.CONTACT_PRESENCE,</span><br><span class="line">        Contacts.PHOTO_ID,</span><br><span class="line">        Contacts.LOOKUP_KEY,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Loader&lt;Cursor&gt; <span class="title">onCreateLoader</span><span class="params">(<span class="keyword">int</span> id, Bundle args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// This is called when a new Loader needs to be created.  This</span></span><br><span class="line">        <span class="comment">// sample only has one Loader, so we don't care about the ID.</span></span><br><span class="line">        <span class="comment">// First, pick the base URI to use depending on whether we are</span></span><br><span class="line">        <span class="comment">// currently filtering.</span></span><br><span class="line">        Uri baseUri;</span><br><span class="line">        <span class="keyword">if</span> (mCurFilter != <span class="keyword">null</span>) &#123;</span><br><span class="line">            baseUri = Uri.withAppendedPath(Contacts.CONTENT_FILTER_URI,</span><br><span class="line">                    Uri.encode(mCurFilter));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            baseUri = Contacts.CONTENT_URI;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Now create and return a CursorLoader that will take care of</span></span><br><span class="line">        <span class="comment">// creating a Cursor for the data being displayed.</span></span><br><span class="line">        String select = <span class="string">"(("</span> + Contacts.DISPLAY_NAME + <span class="string">" NOTNULL) AND ("</span></span><br><span class="line">                + Contacts.HAS_PHONE_NUMBER + <span class="string">"=1) AND ("</span></span><br><span class="line">                + Contacts.DISPLAY_NAME + <span class="string">" != '' ))"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CursorLoader(getActivity(), baseUri,</span><br><span class="line">                CONTACTS_SUMMARY_PROJECTION, select, <span class="keyword">null</span>,</span><br><span class="line">                Contacts.DISPLAY_NAME + <span class="string">" COLLATE LOCALIZED ASC"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadFinished</span><span class="params">(Loader&lt;Cursor&gt; loader, Cursor data)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Swap the new cursor in.  (The framework will take care of closing the</span></span><br><span class="line">        <span class="comment">// old cursor once we return.)</span></span><br><span class="line">        mAdapter.swapCursor(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoaderReset</span><span class="params">(Loader&lt;Cursor&gt; loader)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// This is called when the last Cursor provided to onLoadFinished()</span></span><br><span class="line">        <span class="comment">// above is about to be closed.  We need to make sure we are no</span></span><br><span class="line">        <span class="comment">// longer using it.</span></span><br><span class="line">        mAdapter.swapCursor(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我测试的<a href="/files/contact.zip">小例子</a>，AndroidStudio项目</p>
 </blockquote>
@@ -132,83 +599,6 @@
       <category term="Loaders" scheme="http://yoursite.com/tags/Loaders/"/>
     
       <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android Studio 快捷键整理分享-SadieYu]]></title>
-    <link href="http://yoursite.com/2015/09/21/android-studio-shortcuts/"/>
-    <id>http://yoursite.com/2015/09/21/android-studio-shortcuts/</id>
-    <published>2015-09-21T02:16:34.437Z</published>
-    <updated>2015-09-21T02:16:33.237Z</updated>
-    <content type="html"><![CDATA[<p>Alt+回车 导入包,自动修正</p>
-<p>Ctrl+N   查找类</p>
-<p>Ctrl+Shift+N 查找文件</p>
-<p>Ctrl+Alt+L  格式化代码</p>
-<p>Ctrl+Alt+O 优化导入的类和包</p>
-<p>Alt+Insert 生成代码(如get,set方法,构造函数等)</p>
-<p>Ctrl+E或者Alt+Shift+C  最近更改的代码</p>
-<p>Ctrl+R 替换文本</p>
-<p>Ctrl+F 查找文本</p>
-<p>Ctrl+Shift+Space 自动补全代码</p>
-<p>Ctrl+空格 代码提示</p>
-<p>Ctrl+Alt+Space 类名或接口名提示</p>
-<p>Ctrl+P 方法参数提示</p>
-<p>Ctrl+Shift+Alt+N 查找类中的方法或变量</p>
-<p>Alt+Shift+C 对比最近修改的代码</p>
-<p>Shift+F6  重构-重命名</p>
-<p>Ctrl+Shift+先上键</p>
-<p>Ctrl+X 删除行</p>
-<p>Ctrl+D 复制行</p>
-<p>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者 ）</p>
-<p>Ctrl+J  自动代码</p>
-<p>Ctrl+E 最近打开的文件</p>
-<p>Ctrl+H 显示类结构图</p>
-<p>Ctrl+Q 显示注释文档</p>
-<p>Alt+F1 查找代码所在位置</p>
-<p>Alt+1 快速打开或隐藏工程面板</p>
-<p>Ctrl+Alt+ left/right 返回至上次浏览的位置</p>
-<p>Alt+ left/right 切换代码视图</p>
-<p>Alt+ Up/Down 在方法间快速移动定位</p>
-<p>Ctrl+Shift+Up/Down 代码向上/下移动。</p>
-<p>F2 或Shift+F2 高亮错误或警告快速定位</p>
-<p>代码标签输入完成后，按Tab，生成代码。</p>
-<p>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。</p>
-<p>Ctrl+W 选中代码，连续按会有其他效果</p>
-<p>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。</p>
-<p>Ctrl+Up/Down 光标跳转到第一行或最后一行下</p>
-<p>Ctrl+B 快速打开光标处的类或方法 </p>
-<p>最常用快捷键</p>
-<p>1.Ctrl＋E，可以显示最近编辑的文件列表</p>
-<p>2.Shift＋Click可以关闭文件</p>
-<p>3.Ctrl＋[或]可以跳到大括号的开头结尾</p>
-<p>4.Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方</p>
-<p>5.Ctrl＋F12，可以显示当前文件的结构</p>
-<p>6.Ctrl＋F7可以查询当前元素在当前文件中的引用，然后按F3可以选择</p>
-<p>7.Ctrl＋N，可以快速打开类</p>
-<p>8.Ctrl＋Shift＋N，可以快速打开文件</p>
-<p>9.Alt＋Q可以看到当前方法的声明</p>
-<p>10.Ctrl＋W可以选择单词继而语句继而行继而函数</p>
-<p>11.Alt＋F1可以将正在编辑的元素在各个面板中定位</p>
-<p>12.Ctrl＋P，可以显示参数信息</p>
-<p>13.Ctrl＋Shift＋Insert可以选择剪贴板内容并插入</p>
-<p>14.Alt＋Insert可以生成构造器/Getter/Setter等</p>
-<p>15.Ctrl＋Alt＋V 可以引入变量。例如把括号内的SQL赋成一个变量</p>
-<p>16.Ctrl＋Alt＋T可以把代码包在一块内，例如try/catch</p>
-<p>17.Alt＋Up and Alt＋Down可在方法间快速移动</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Alt+回车 导入包,自动修正</p>
-<p>Ctrl+N   查找类</p>
-<p>Ctrl+Shift+N 查找文件</p>
-<p>Ctrl+Alt+L  格式化代码</p>
-<p>Ctrl+Alt+O 优化导入的类和包</p>
-<p>Alt+Insert 生成代码(如]]>
-    </summary>
-    
-      <category term="Android Studio" scheme="http://yoursite.com/tags/Android-Studio/"/>
-    
-      <category term="快捷键" scheme="http://yoursite.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     
   </entry>
   
@@ -262,206 +652,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[hexo 学习笔记]]></title>
-    <link href="http://yoursite.com/2015/09/17/hexo-learning/"/>
-    <id>http://yoursite.com/2015/09/17/hexo-learning/</id>
-    <published>2015-09-17T03:00:37.706Z</published>
-    <updated>2015-09-17T03:00:37.706Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p><strong>重要参考：</strong> <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">hexo写作指南</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<p><strong>重要参考：</strong> <a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">hexo写作指南</a></p>
-]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[在aws免费云服务上安装Shadowsocks以及vpn]]></title>
-    <link href="http://yoursite.com/2015/09/17/deploy-vpn-shadowsocks-on-aws/"/>
-    <id>http://yoursite.com/2015/09/17/deploy-vpn-shadowsocks-on-aws/</id>
-    <published>2015-09-17T00:59:59.082Z</published>
-    <updated>2015-09-17T00:59:59.082Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
-<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变的，重启一次服务器IP就变了，所以为了IP固定不变，可以申请一个弹性IP。但是你申请的弹性IP，一定要及时绑定到你的运行着的服务器上，不然是要收费的。</p>
-<p>我选择的Ubuntu server，所以在上面安装vpn和shadowsocks都简单的要命……</p>
-<h2 id="shadowsocks"><strong>shadowsocks</strong></h2><h3 id="安装"><strong>安装</strong></h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get <span class="keyword">install</span> python-pip</span><br><span class="line">pip <span class="keyword">install</span> shadowsocks</span><br></pre></td></tr></table></figure>
-<h3 id="使用"><strong>使用</strong></h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -<span class="tag">p</span> <span class="number">443</span> -k password -m rc4-md5</span><br></pre></td></tr></table></figure>
-<p>如果要后台运行：</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver -p 443 -k password -<span class="keyword">m</span> rc4-md5 --user nobody -<span class="keyword">d</span> start</span><br></pre></td></tr></table></figure>
-<p>如果要停止：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ssserver <span class="operator">-d</span> stop</span><br></pre></td></tr></table></figure>
-<p>如果要检查日志：</p>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo less /<span class="built_in">var</span>/<span class="keyword">log</span>/shadowsocks<span class="built_in">.</span><span class="keyword">log</span></span><br></pre></td></tr></table></figure>
-<p><strong>参考</strong>： <a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">shadowsocks github</a></p>
-<h2 id="vpn安装"><strong>vpn安装</strong></h2><p>直接参考这个：<a href="http://www.bitbottle.com/archives/132.html/2" target="_blank" rel="external">利用AWS免费搭建私人VPN</a></p>
-<hr>
-<p><strong>切记</strong>，这两个安装完了以后，不要忘记打开防火墙的相应端口。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<p>aws现在提供一年的免费试用云服务哦，不过只能选择最小的那种服务，而且据说一年以后不会进行任何提醒就会开始扣费，所以一定要小心。申请的时候要绑定信用卡，并且会扣除1美元，不要忘记还……</p>
-<p>申请完成以后可以申请一个弹性IP，否则你的服务器的公网IP是会变]]>
-    </summary>
-    
-      <category term="Shadowsocks" scheme="http://yoursite.com/tags/Shadowsocks/"/>
-    
-      <category term="aws" scheme="http://yoursite.com/tags/aws/"/>
-    
-      <category term="免费" scheme="http://yoursite.com/tags/%E5%85%8D%E8%B4%B9/"/>
-    
-      <category term="网络" scheme="http://yoursite.com/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[在ActionBar中提供分享按钮]]></title>
-    <link href="http://yoursite.com/2015/09/15/share-action-provider/"/>
-    <id>http://yoursite.com/2015/09/15/share-action-provider/</id>
-    <published>2015-09-15T07:10:18.216Z</published>
-    <updated>2015-09-15T07:10:18.216Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionProvider</strong>。<br>我们只需要提供一个share intent，然后其他的东西都由ShareActionProvider来完成。<br>为了使用ShareActionProvider，只需要在定义Activity菜单的资源文件中加入一个item，如以下代码</p>
-<pre><code>&lt;menu xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;
-    &lt;<span class="property">item</span>
-            android:<span class="property">id</span>=<span class="string">"@+id/menu_item_share"</span>
-            android:showAsAction=<span class="string">"ifRoom"</span>
-            android:title=<span class="string">"Share"</span>
-            android:actionProviderClass=
-                <span class="string">"android.widget.ShareActionProvider"</span> /&gt;
-    ...
-&lt;/menu&gt;
-</code></pre><p>然后呢，我们要给ShareActionProvider设置一个Share Intent。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> ShareActionProvider mShareActionProvider;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Inflate menu resource file.</span></span><br><span class="line">    getMenuInflater().inflate(R.menu.share_menu, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Locate MenuItem with ShareActionProvider</span></span><br><span class="line">    MenuItem item = menu.findItem(R.id.menu_item_share);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Fetch and store ShareActionProvider</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider) item.getActionProvider();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Return true to display menu</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call to update the share intent</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setShareIntent</span><span class="params">(Intent shareIntent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mShareActionProvider != <span class="keyword">null</span>) &#123;</span><br><span class="line">        mShareActionProvider.setShareIntent(shareIntent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意：</strong> 如果你使用<strong>Support Library</strong>，那么使用上面的代码的结果就是应用程序错误</p>
-<p>在使用<strong>Support Library</strong>的时候，代码应该是这样的：</p>
-<pre><code><span class="tag">&lt;<span class="title">menu</span> <span class="attribute">xmlns:android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
-      <span class="attribute">xmlns:yourapp</span>=<span class="value">"http://schemas.android.com/apk/res-auto"</span> &gt;</span>
-    <span class="tag">&lt;<span class="title">item</span> <span class="attribute">android:id</span>=<span class="value">"@+id/action_share"</span>
-          <span class="attribute">android:title</span>=<span class="value">"@string/share"</span>
-          <span class="attribute">app:showAsAction</span>=<span class="value">"ifRoom"</span>
-          <span class="attribute">app:actionProviderClass</span>=<span class="value">"android.support.v7.widget.ShareActionProvider"</span>
-          /&gt;</span>
-    ...
-<span class="tag">&lt;/<span class="title">menu</span>&gt;</span>
-</code></pre><p>而相应的java代码应该是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line">    getMenuInflater().inflate(R.menu.main_activity_actions, menu);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set up ShareActionProvider's default share intent</span></span><br><span class="line">    MenuItem shareItem = menu.findItem(R.id.action_share);</span><br><span class="line">	<span class="comment">//这里，是关键的不同</span></span><br><span class="line">    mShareActionProvider = (ShareActionProvider)</span><br><span class="line">            MenuItemCompat.getActionProvider(shareItem);</span><br><span class="line">    mShareActionProvider.setShareIntent(getDefaultIntent());</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.onCreateOptionsMenu(menu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<p>在ActionBar中提供分享按钮<br>在<strong>Android 4.0</strong>中，提供<strong>分享</strong>按钮变得更加简单，因为<strong>Android 4.0</strong>引入了<strong>ActionPro]]>
-    </summary>
-    
-      <category term="ActionBar" scheme="http://yoursite.com/tags/ActionBar/"/>
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-      <category term="Training" scheme="http://yoursite.com/tags/Training/"/>
-    
-      <category term="分享" scheme="http://yoursite.com/tags/%E5%88%86%E4%BA%AB/"/>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Markdown语法学习笔记]]></title>
-    <link href="http://yoursite.com/2015/09/15/Markdown-Grammar/"/>
-    <id>http://yoursite.com/2015/09/15/Markdown-Grammar/</id>
-    <published>2015-09-15T06:31:12.059Z</published>
-    <updated>2015-09-14T05:20:27.730Z</updated>
-    <content type="html"><![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
-<hr>
-<h2 id="1、文本的样式">1、文本的样式</h2><hr>
-<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><strong>效果</strong>： <strong>粗体文本</strong></p>
-<hr>
-<h3 id="1-2、斜体">1.2、斜体</h3><p><strong>语法</strong>： *需要设置成斜体的文字*<br><strong>效果</strong>： <em>斜体文字</em></p>
-<hr>
-<h3 id="1-3、_删除线">1.3、 删除线</h3><p><strong>语法</strong>： ~ ~文字~ ~ （<strong>注意：中间无空格</strong>）<br><strong>效果</strong>： <del>文字</del></p>
-<hr>
-<h3 id="1-4、_超链接">1.4、 超链接</h3><p><strong>效果</strong>： <a href="http://202.110.203.12" target="_blank" rel="external">超链接标题</a></p>
-<hr>
-<h3 id="1-5、_图片">1.5、 图片</h3><p><strong>效果</strong>： <img src="/img/barcode.png" alt="图片替代文本" title="图片标题"></p>
-<hr>
-<h3 id="1-6、代码">1.6、代码</h3><p><strong>代码</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">    System.out.println(<span class="string">"Hello, World!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>inline 代码</strong><br><code>System.out.println(&quot;Hello, World&quot;);</code></p>
-<hr>
-<h3 id="1-7、_列表">1.7、 列表</h3><p><strong>效果</strong>： </p>
-<ul>
-<li>Item1</li>
-<li>Item2</li>
-<li>Item3</li>
-</ul>
-<p><strong>注意！-前面一定要有个空格！</strong></p>
-<ul>
-<li>Item1</li>
-<li>Item2</li>
-<li>Item3</li>
-</ul>
-<ul>
-<li>Item1</li>
-<li>Item2</li>
-<li>Item3</li>
-</ul>
-<p><strong>有序列表</strong></p>
-<ol>
-<li>Item1</li>
-<li>Item2</li>
-<li>Item3</li>
-</ol>
-<hr>
-<h3 id="1-8_引用">1.8 引用</h3><p><strong>效果</strong>： </p>
-<blockquote>
-<p>装B也是一种品质</p>
-</blockquote>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>标签（空格分隔）： Markdown 学习笔记</p>
-<hr>
-<h2 id="1、文本的样式">1、文本的样式</h2><hr>
-<h3 id="1-1、加粗">1.1、加粗</h3><p><strong>语法</strong>： **需要加粗的文本**<br><str]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[好玩的Android版本代号]]></title>
-    <link href="http://yoursite.com/2015/09/15/Android-version/"/>
-    <id>http://yoursite.com/2015/09/15/Android-version/</id>
-    <published>2015-09-15T02:35:25.416Z</published>
-    <updated>2015-09-15T02:35:25.416Z</updated>
-    <content type="html"><![CDATA[<hr>
-<ul>
-<li>Android 1.5        Cupcake                纸杯蛋糕</li>
-<li>Android 1.6         Donut                 甜甜圈</li>
-<li>Android 2.0/2.1     Eclair                 闪电泡芙</li>
-<li>Android 2.2         Froyo                冻酸奶</li>
-<li>Android 2.3        GingerBread            姜人饼</li>
-<li>Android 3.0        Honeycomb            蜂巢</li>
-<li>Android 4.0        Ice Cream Sandwich    冰淇淋三明治</li>
-<li>Android 5.0/5.1    Lollipop            棒棒糖</li>
-<li>Android 6.0        Marshmallow            棉花糖</li>
-</ul>
-<p>猜猜下个版本会叫什么名字……</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<ul>
-<li>Android 1.5        Cupcake                纸杯蛋糕</li>
-<li>Android 1.6         Donut                 甜甜圈</li>
-<li>Android 2.0/2.1]]>
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
-    
-      <category term="代码" scheme="http://yoursite.com/tags/%E4%BB%A3%E7%A0%81/"/>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[从github上找到一个超级喜欢的主题]]></title>
     <link href="http://yoursite.com/2015/09/11/theme/"/>
     <id>http://yoursite.com/2015/09/11/theme/</id>
@@ -483,25 +673,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[在Github上搭建自己的个人Blog]]></title>
-    <link href="http://yoursite.com/2015/09/11/build-my-blog/"/>
-    <id>http://yoursite.com/2015/09/11/build-my-blog/</id>
-    <published>2015-09-11T07:42:19.209Z</published>
-    <updated>2015-09-11T07:42:19.209Z</updated>
-    <content type="html"><![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>最近闲来无事，试着在GitHub上搭建一个个人Blog。也没什么大的想法，简单的记录一些流水账吧。</p>
-]]>
-    </summary>
-    
-      <category term="Blog" scheme="http://yoursite.com/tags/Blog/"/>
-    
-      <category term="Github" scheme="http://yoursite.com/tags/Github/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Hello, Hexo world]]></title>
     <link href="http://yoursite.com/2015/09/11/Hello-Hexo-world/"/>
     <id>http://yoursite.com/2015/09/11/Hello-Hexo-world/</id>
@@ -510,28 +681,6 @@
     <content type="html"></content>
     <summary type="html">
     
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://yoursite.com/2015/09/11/hello-world/"/>
-    <id>http://yoursite.com/2015/09/11/hello-world/</id>
-    <published>2015-09-11T05:51:21.512Z</published>
-    <updated>2015-09-11T05:51:21.512Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
     </summary>
     
   </entry>

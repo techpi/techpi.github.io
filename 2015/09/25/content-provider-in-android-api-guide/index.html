@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Content Providers | Techpi.cn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。
+
+Content Providers 管理对结构化数据的访问。他们用于封装数据，并且提供了安全的定义数据的机制。 Content Provider 是从一个进程中访问另外一个进程数据的标准接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Content Providers">
+<meta property="og:url" content="http://yoursite.com/2015/09/25/content-provider-in-android-api-guide/index.html">
+<meta property="og:site_name" content="Techpi.cn">
+<meta property="og:description" content="学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。
+
+Content Providers 管理对结构化数据的访问。他们用于封装数据，并且提供了安全的定义数据的机制。 Content Provider 是从一个进程中访问另外一个进程数据的标准接口">
+<meta property="og:updated_time" content="2015-09-25T08:19:17.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Content Providers">
+<meta name="twitter:description" content="学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。
+
+Content Providers 管理对结构化数据的访问。他们用于封装数据，并且提供了安全的定义数据的机制。 Content Provider 是从一个进程中访问另外一个进程数据的标准接口">
+  
+    <link rel="alternative" href="/atom.xml" title="Techpi.cn" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/image.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Techpi.cn</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术派</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags/随笔">随笔</a></li>
+				        
+							<li><a href="/tags/读书">读书</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/techpi" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/5235595057" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ActionBar/" style="font-size: 10px;">ActionBar</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Content-Provider/" style="font-size: 10px;">Content Provider</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Loaders/" style="font-size: 10px;">Loaders</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Training/" style="font-size: 10px;">Training</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/theme/" style="font-size: 10px;">theme</a> <a href="/tags/代码/" style="font-size: 10px;">代码</a> <a href="/tags/免费/" style="font-size: 10px;">免费</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/学习笔记/" style="font-size: 10px;">学习笔记</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">博主是一个死理性派，小心眼，30多岁高龄的大叔级宅男码农，在此出没请高度戒备……</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Techpi.cn</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/image.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Techpi.cn</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术派</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags/随笔">随笔</a></li>
+		        
+					<li><a href="/tags/读书">读书</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/techpi" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/5235595057" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-content-provider-in-android-api-guide" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/09/25/content-provider-in-android-api-guide/" class="article-date">
+  	<time datetime="2015-09-25T00:00:00.000Z" itemprop="datePublished">2015-09-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Content Providers
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Content-Provider/">Content Provider</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻译/">翻译</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+	  
+	  
+		<!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内容提供者基础"><span class="toc-number">1.</span> <span class="toc-text">内容提供者基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#访问内容提供者"><span class="toc-number">1.1.1.</span> <span class="toc-text">访问内容提供者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容Uris"><span class="toc-number">1.1.2.</span> <span class="toc-text">内容Uris</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从内容提供者读取数据"><span class="toc-number">1.2.</span> <span class="toc-text">从内容提供者读取数据</span></a></li></ol></li></ol>
+		  </div>
+		
+		
+		
+		
+        <blockquote>
+<p>学习了一段时间Android开发，其他的三大组件都稍微了解了一下，唯独这个Content Provider， 还一点也没了解过。 现在就通过翻译API Guide来了解下Content Provider吧。</p>
+</blockquote>
+<p>Content Providers 管理对<strong>结构化数据</strong>的访问。他们用于封装数据，并且提供了安全的定义数据的机制。 Content Provider 是从一个进程中访问另外一个进程数据的标准接口。</p>
+<p>当你想要访问一个Content Provider中的数据时， 你需要在你的应用Context中使用ContentResolver来作为一个客户端和内容提供者通讯。 ContentResolver对象和提供者对象通讯， 这些对象是实现了ContentProvider的类的实例。 提供者对象从客户端接收请求， 执行请求的动作， 然后返回结果。</p>
+<p>如果你不需要和其他应用共享你的数据，那么你不必开发自己的内容提供者。但是，你确实需要实现内容提供者来提供自定义的搜索建议。你同样需要自己实现内容提供者，如果你要复制粘贴复杂的数据和文件到其他的应用程序中。</p>
+<p>Android本身提供了大量的内容提供者来管理各种数据，例如音频、视频、图像以及个人联系人信息。你可以在参考文档中的android.provider包中找到一些。这些内容提供者可以被任何安卓应用有限制的访问。</p>
+<p>以下主题描述了内容提供者的更多细节：</p>
+<ul>
+<li><a href="#Basics">内容提供者基础</a><br> 如何访问ContentProvider中的数据表中的数据。</li>
+<li><a href="#Basics">创建一个内容提供者</a><br> 如何创建自己的内容提供者</li>
+<li><a href="#Calendar">日历提供者</a><br> 如何访问Android平台的日历提供者</li>
+<li><a href="#Contacts">联系人提供者</a><br> 如何访问Android平台的联系人提供者</li>
+</ul>
+<h1 id="内容提供者基础"><a name="Basics">内容提供者基础</a></h1><p>内容提供者管理对集中存放数据的访问。内容提供者是一个安卓应用程序的一部分，应用经常会提供自己的UI来操作数据。但是，内容提供者主要用来为其他应用提供服务，这些应用可以使用提供者客户端对象来访问提供者的数据。提供者与客户端一起提供了一个一致的、标准的接口来进行跨进程通讯以及安全数据访问。</p>
+<p>本文描述了以下内容的基础：</p>
+<ul>
+<li>内容提供者是如何工作的</li>
+<li>从内容提供者获取数据要采用的API</li>
+<li>使用内容提供者插入，更新以及删除数据需要使用的API</li>
+<li>其他使用内容提供者的API</li>
+</ul>
+<h2 id="概述">概述</h2><p>一个内容提供者对外部的应用程序以一个或者多个数据表的形式呈现数据，这些数据表类似关系数据库中的数据表。一行代表了某种类型对象的一个实例，而一行中的一列代表这个实例的一些数据片段。</p>
+<p>例如，Android平台内置的一个内容提供者，用户字典，存储了用户需要保存的非标准单词的拼写。表1给出了一个内容提供者数据格式的示例。<br>表1: 用户字典示例表</p>
+<table>
+<thead>
+<tr>
+<th>word</th>
+<th>app id</th>
+<th>frequency</th>
+<th>locale</th>
+<th>_ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mapreduce</td>
+<td>user1</td>
+<td>100</td>
+<td>en_US</td>
+<td>1</td>
+</tr>
+<tr>
+<td>precompiler</td>
+<td>user14</td>
+<td>200</td>
+<td>fr_FR</td>
+<td>2</td>
+</tr>
+<tr>
+<td>applet</td>
+<td>user2</td>
+<td>225</td>
+<td>fr_CA</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>表1中，每一行都代表了一个单词的实例，这些单词都可能无法在标准词典中找到。每一列都代表了这个单词的某些信息，例如第一次出现的时区信息（有点无法理解这个字段的意义，whatever，不影响理解ContentProvider）。这些列头是数据列的名字。当你说一行的locale时，你指的是locale这一列。对于这个提供者，_ID列担当了主键的角色被提供者自动维护。</p>
+<blockquote>
+<p>注意：一个内容提供者并不必须要有一个主键，而且即使有主键也不必须使用_ID来作为主键的列名。但是，如果你想要绑定一个提供者的数据到一个ListView，那么其中的一个列名必须是_ID。这个要求在”Displaying query results”章节中进行了更详细的解释。</p>
+</blockquote>
+<h3 id="访问内容提供者">访问内容提供者</h3><p>一个应用使用ContentResolver客户端对象来从内容提供者访问数据。这个对象拥有一些方法，这些方法会调用内容提供者的完全一样名字的方法，这些内容提供者是ContentProvider子类的实例。ContentResolver方法提供了基本的”CRUD”等持久化方法（创建，获取，更新，删除）。</p>
+<p>ContentResolver对象运行于客户端应用进程中，而拥有ContentProvider对象的进程负责自动处理跨进程通讯。 Content Provider同样扮演了数据仓库和数据外在表现形式（数据表）之间的抽象层的角色。</p>
+<blockquote>
+<p>注意：为了访问一个数据提供者，你的应用经常需要在Manifest文件中申请一些特定的权限。这些将在<strong>内容提供者权限</strong>章节进行详细的描述。</p>
+</blockquote>
+<p>例如，为了从用户字典提供者获取单词和地点的列表，需要调用ContentResolver.query()方法。query方法然后调用ContentProvider.query()方法，这个方法是用户字典提供者实现的。以下代码演示了这个调用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询用户词典并返回结果</span></span><br><span class="line">mCursor = getContentResolver().query(</span><br><span class="line">    UserDictionary.Words.CONTENT_URI,   <span class="comment">// 单词表的内容 URI </span></span><br><span class="line">    mProjection,                        <span class="comment">// 需要返回的列</span></span><br><span class="line">    mSelectionClause                    <span class="comment">// 查询条件</span></span><br><span class="line">    mSelectionArgs,                     <span class="comment">// 查询条件参数</span></span><br><span class="line">    mSortOrder);                        <span class="comment">// 排序方式</span></span><br></pre></td></tr></table></figure></p>
+<p>表2列出了<code>query(Uri,projection,selection,selectionArgs,sortOrder)</code>方法参数和SQL SELECT语句的对比</p>
+<p>表2 Query方法和SQL查询的对比</p>
+<table>
+<thead>
+<tr>
+<th>query()参数</th>
+<th>SELECT关键字/参数</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uri</td>
+<td>FROM table_name</td>
+<td>Uri对应于内容提供者的table_name数据表</td>
+</tr>
+<tr>
+<td>projection</td>
+<td>col,col,col,…</td>
+<td>projection是需要返回的列名的数组</td>
+</tr>
+<tr>
+<td>selection</td>
+<td>WHERE col=value</td>
+<td>selection指定了查询条件</td>
+</tr>
+<tr>
+<td>selectionArgs</td>
+<td>（没有完全相同的对应，SelectionArgs替代查询条件中的?占位符）</td>
+<td></td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>ORDER BY col,col</td>
+<td>sortOrder制定了返回的Cursor中每一行的排列数序</td>
+</tr>
+</tbody>
+</table>
+<h3 id="内容Uris">内容Uris</h3><p>一个内容Uri是一个URI，它唯一标识了内容提供者中的数据。内容URI包含整个内容提供者的符号名称(authority)以及指向数据表的一个名称（路径）。当你调用客户端方法来访问数据提供者的一个表的时候，该表的内容Uri是其中的一个参数。</p>
+<p>例如在前面的查询代码中，常量CONSTANT_URI包含了用户字典的words数据表的内容URI。ContentResolver对象分析出URI的authority，然后使用它来“解析”出内容提供者（通过与系统表中已知的内容提供者进行比较）。然后ContentResolver将查询分发给正确的提供者。</p>
+<p>ContentProvider使用内容URI的路径部分来选择访问哪个数据表。一个内容提供者应该为公开的每个表都提供路径。<br>在前面的代码中，words表的一个完整的URI形式应该是：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">content:</span><span class="comment">//user_dictionary/words</span></span><br></pre></td></tr></table></figure></p>
+<p>其中user_dictionary字符串是内容提供者的authority部分，words是数据表的路径部分。字符串content://(schema部分)总是存在，它标识着这是一个内容URI。<br>很多内容提供者允许你通过在末尾添加一个ID来查询数据表中一个单独的行。例如，为了从用户字典表中获取_ID为4的一行，你可以这样使用内容URI。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uri singleUri = ContentUris.withAppendedId(UserDictionary.Words.CONTENT_URI,<span class="number">4</span>);</span><br></pre></td></tr></table></figure></p>
+<p>当你获取到一些数据行之后，想要更新或者删除其中一条的时候，你会经常这样使用。</p>
+<blockquote>
+<p>注意：<code>Uri</code>和<code>UriBuilder</code>类包含了一些方便的方法用于从字符串对象构建”well-formed”（正确格式）的URI对象。<code>ContentUris</code>包含了一些方便的方法用于为一个URI添加id值。前面的代码片段使用了<code>withAppendedId()</code>来在用户字典内容URI中追加id。</p>
+</blockquote>
+<h2 id="从内容提供者读取数据">从内容提供者读取数据</h2><p>这一节描述如何从一个内容提供者读取数据，使用用户字典提供者作为一个示例。</p>
+<blockquote>
+<p>为了代码的清楚简单起见，本节的代码片段直接在UI线程中调用了ContentResolver.query()方法。但是，在实际的代码中，你应该在一个单独的线程中异步的执行查询。为了做到这一点，一种方法是使用CursorLoader类，这个类在”Loaders”向导中进行了详细的描述。同样的，这些代码只是一些片段，并不是一个完整的应用。</p>
+</blockquote>
+<p>为了从内容提供者获取数据，采用以下基本步骤：</p>
+<ol>
+<li>从提供者请求权限</li>
+<li>编写代码向提供者发送查询</li>
+</ol>
+<p>To be continued…</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/26/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/24/loaders-in-android/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Loaders</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="content-provider-in-android-api-guide" data-title="Content Providers" data-url="http://yoursite.com/2015/09/25/content-provider-in-android-api-guide/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"techpi"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Techpi.cn
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

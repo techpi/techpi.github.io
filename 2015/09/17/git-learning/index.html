@@ -128,7 +128,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ActionBar/" style="font-size: 10px;">ActionBar</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Loaders/" style="font-size: 10px;">Loaders</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Training/" style="font-size: 10px;">Training</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/theme/" style="font-size: 10px;">theme</a> <a href="/tags/代码/" style="font-size: 10px;">代码</a> <a href="/tags/免费/" style="font-size: 10px;">免费</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/学习笔记/" style="font-size: 10px;">学习笔记</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a>
+						<a href="/tags/ActionBar/" style="font-size: 10px;">ActionBar</a> <a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Blog/" style="font-size: 10px;">Blog</a> <a href="/tags/Content-Provider/" style="font-size: 10px;">Content Provider</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Loaders/" style="font-size: 10px;">Loaders</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Training/" style="font-size: 10px;">Training</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/theme/" style="font-size: 10px;">theme</a> <a href="/tags/代码/" style="font-size: 10px;">代码</a> <a href="/tags/免费/" style="font-size: 10px;">免费</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/学习笔记/" style="font-size: 10px;">学习笔记</a> <a href="/tags/快捷键/" style="font-size: 10px;">快捷键</a> <a href="/tags/版本控制/" style="font-size: 10px;">版本控制</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a>
 					</div>
 				</section>
 				
@@ -243,6 +243,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+	  
+	  
+		<!-- Table of Contents -->
+		
+		  <div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-创建版本库"><span class="toc-number">1.</span> <span class="toc-text">1.创建版本库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-版本管理"><span class="toc-number">2.</span> <span class="toc-text">2.版本管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1查看仓库状态"><span class="toc-number">2.1.</span> <span class="toc-text">2.1查看仓库状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2查看文件变化"><span class="toc-number">2.2.</span> <span class="toc-text">2.2查看文件变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3查看版本记录"><span class="toc-number">2.3.</span> <span class="toc-text">2.3查看版本记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4版本回退"><span class="toc-number">2.4.</span> <span class="toc-text">2.4版本回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5撤销修改"><span class="toc-number">2.5.</span> <span class="toc-text">2.5撤销修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6删除文件"><span class="toc-number">2.6.</span> <span class="toc-text">2.6删除文件</span></a></li></ol></li></ol>
+		  </div>
+		
+		
+		
+		
         <hr>
 <h2 id="1-创建版本库"><strong>1.创建版本库</strong></h2><p>首先创建一个空的目录<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> learngit</span><br><span class="line"><span class="keyword">cd</span> learngit</span><br><span class="line"><span class="keyword">pwd</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure></p>
 <p>然后，通过<code>git init</code>命令进行初始化<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">git</span> init</span><br></pre></td></tr></table></figure></p>
@@ -279,18 +291,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/09/21/android-studio-shortcuts/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/09/24/loaders-in-android/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Android Studio 快捷键整理分享-SadieYu
+          Loaders
         
       </div>
     </a>
   
   
-    <a href="/2015/09/17/hexo-learning/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo 学习笔记</div>
+    <a href="/2015/09/11/theme/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从github上找到一个超级喜欢的主题</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
